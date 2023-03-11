@@ -55,6 +55,8 @@ private:
     double im;
 };
 
+bool operator==(complex a, complex b);
+bool operator!=(complex a, complex b);
 complex operator+(complex a, complex b);
 complex operator-(complex a, complex b);
 complex operator-(complex a);
