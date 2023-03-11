@@ -20,12 +20,16 @@ SOURCES = ${foreach dir, ${DIRS}, ${wildcard ${addprefix ${dir}/*, ${SRC_EXTENSI
 HEADERS = ${foreach dir, ${DIRS}, ${wildcard ${addprefix ${dir}/*, ${HDR_EXTENSIONS}}}}
 OBJECTS = ${addsuffix .o, ${basename ${SOURCES}}}
 
+BASENAMES = ${basename ${SOURCES}}
+
 .PHONY : all clean rebuild show
 
 all : ${PROJECT}
 
 ${PROJECT} : ${OBJECTS}
 	${CXX} ${CXXFLAGS} $^ -o $@ ${INCLUDES} ${LIBS}
+	-mkdir build
+	-mv $^ build/
 
 %.o : %.cpp
 	${CXX} ${CXXFLAGS} -c $< -o $@ $(OPTS)
@@ -53,5 +57,6 @@ show :
 	@echo "PROJECT = " ${PROJECT}
 	@echo "SOURCES = " ${SOURCES}
 	@echo "HEADERS = " ${HEADERS}
-	@echo "OBJECTS = " $(OBJECTS)
+	@echo "OBJECTS = " ${OBJECTS}
 	@echo "DIRS = " ${DIRS}
+	@echo "BASENAMES = " ${BASENAMES}
