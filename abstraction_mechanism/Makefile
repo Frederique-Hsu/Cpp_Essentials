@@ -5,7 +5,7 @@
 PROJECT = abstraction_mechanism
 
 CXX = g++
-CXXFLAGS = -g -Wall -std=c++20
+CXXFLAGS = -g -Wall -std=c++20 -fpermissive
 OPTS = -Wno-deprecated -DDEBUG
 INCLUDES = 
 LIBS = -lgtest -lgmock -lpthread
@@ -17,6 +17,8 @@ HDR_EXTENSIONS = .h .hpp .h++ .hh .hxx
 CUR_DIR = .
 DIRS = ${shell find ${CUR_DIR} -maxdepth 5 -type d}
 SOURCES = ${foreach dir, ${DIRS}, ${wildcard ${addprefix ${dir}/*, ${SRC_EXTENSIONS}}}}
+# SOURCES -= $(CUR_DIR)/classes/enumerate.cpp
+
 HEADERS = ${foreach dir, ${DIRS}, ${wildcard ${addprefix ${dir}/*, ${HDR_EXTENSIONS}}}}
 OBJECTS = ${addsuffix .o, ${basename ${SOURCES}}}
 
@@ -28,8 +30,6 @@ all : ${PROJECT}
 
 ${PROJECT} : ${OBJECTS}
 	${CXX} ${CXXFLAGS} $^ -o $@ ${INCLUDES} ${LIBS}
-	-mkdir build
-	-mv $^ build/
 
 %.o : %.cpp
 	${CXX} ${CXXFLAGS} -c $< -o $@ $(OPTS)

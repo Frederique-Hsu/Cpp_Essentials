@@ -4,7 +4,9 @@
 *.obj
 *.exe
 *.user
-
+*.pdf
+*.json
+*.txt
 
 Textbook/
 build*/
