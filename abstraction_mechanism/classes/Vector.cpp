@@ -9,7 +9,7 @@
 
 #include <algorithm>
 
-Vector::Vector(std::initializer_list<double> lst) : elem{new double[lst.size()]}, sz{lst.size()}
+Vector::Vector(std::initializer_list<double> lst) : elem{new double[lst.size()]}, sz{static_cast<int>(lst.size())}
 {
     std::copy(lst.begin(), lst.end(), elem);    /* 从lst拷贝内容到elem中 */
 }

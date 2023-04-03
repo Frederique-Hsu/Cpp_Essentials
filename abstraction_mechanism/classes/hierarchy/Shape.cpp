@@ -10,6 +10,9 @@
 #include "Triangle.hpp"
 #include "Smiley.hpp"
 
+#include <memory>
+#include <vector>
+
 void rotate_all(std::vector<Shape*>& vec, int angle)
 {
     for (auto& p : vec)
@@ -18,40 +21,45 @@ void rotate_all(std::vector<Shape*>& vec, int angle)
     }
 }
 
-#if 0
+
 std::unique_ptr<Shape> read_shape(std::istream& is)
 {
-    Kind k;
+    int x, y, r;
+    is >> x >> y >> r;
 
+    Kind k;
+    // is >> k;
+
+    Point p(x, y);
+    Point p1(1, 2), p2(3, 4), p3(5, 6);
+    
+    std::unique_ptr<Shape> ps;
     switch (k)
     {
     case Kind::circle:
-        Point p(1, 2);
-        int r = 3;
-        return std::unique_ptr<Circle>(p, r);
+        ps = std::make_unique<Circle>(p, r);
+        break;
     case Kind::triangle:
-        Point p1(1, 2), p2(3, 4), p3(5, 6);
-        return std::unique_ptr<Triangle>(p1, p2, p3);
+        ps = std::make_unique<Triangle>(p1, p2, p3);
+        break;
     case Kind::smiley:
-        Smiley* ps = std::unique<Smiley>(p, r);
-        ps->add_eye(e1);
-        ps->add_eye(e2);
-        ps->set_mouth(m);
-        return ps;
+        ps = std::make_unique<Smiley>(p, r);
+        // ps->add_eye(e1);
+        // ps->add_eye(e2);
+        // ps->set_mouth(m);
+        break;
     }
+    return ps;
 }
+
 
 void access()
 {
-    std::vector<Shape*> vec;
+    std::vector<std::unique_ptr<Shape>> vec;
     while (std::cin)
     {
         vec.push_back(read_shape(std::cin));
     }
-    rotate_all(vec, 45);
-    for (auto p : vec)
-    {
-        delete p;
-    }
+    for_all(vec, [](Shape& shape){ shape.draw(); });        // draw_all()
+    for_all(vec, [](Shape& shape){ shape.rotate(45); });    // rotate_all(45)
 }
-#endif

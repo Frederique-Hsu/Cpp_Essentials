@@ -16,7 +16,14 @@
 class Shape
 {
 public:
+    Shape() {}
     virtual ~Shape() {}
+
+    Shape(const Shape&) = delete;
+    Shape& operator=(const Shape&) = delete;
+
+    Shape(Shape&&) = delete;
+    Shape& operator=(Shape&&) = delete;
 public:
     virtual Point center() const = 0;
     virtual void move(Point to) = 0;
@@ -34,4 +41,14 @@ enum class Kind
 };
 
 std::unique_ptr<Shape> read_shape(std::istream& is);
+
 void access();
+
+template<class Container, class Oper>
+void for_all(Container& container, Oper op)
+{
+    for (auto& elem : container)
+    {
+        op(*elem);
+    }
+}
