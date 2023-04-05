@@ -1,4 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    String
+    IO_Stream \
+    String \
+    algorithms \
+    container
