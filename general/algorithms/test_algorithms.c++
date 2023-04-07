@@ -37,3 +37,15 @@ TEST(StdAlgorithmsUTester, CheckSortAndUniqueAppendAlgos)
     std::list<Entry> resultList = unique_sort_append(phone_book);
     CHECK_EQUAL(resultList.size(), 7);
 }
+
+TEST(StdAlgorithmsUTester, CheckFindAllAlgorithm)
+{
+    std::string message("Mary had a little lamb");
+    for (auto iter : find_all(message, 'a'))
+    {
+        if (*iter != 'a')
+        {
+            std::cerr << "a bug!" << std::endl;
+        }
+    }
+}
