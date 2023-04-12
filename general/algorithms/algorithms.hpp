@@ -13,6 +13,7 @@
 #include <list>
 #include <string>
 #include <iterator>
+#include <algorithm>
 
 void unique_sort_copy(std::vector<Entry>& vec, std::list<Entry>& lst);
 std::list<Entry> unique_sort_append(std::vector<Entry>& vec);
@@ -23,6 +24,17 @@ std::vector<std::string::iterator> find_all(std::string& str, char target_letter
 template<typename Container, typename Value>
 std::vector<typename Container::iterator> find_all(Container& container, Value value);
 
+namespace estd
+{
+    template<class Container> void sort(Container& container)
+    {
+        std::sort(container.begin(), container.end());
+    }
+    template<class Container, class Predicate> void sort(Container& container, Predicate condition)
+    {
+        std::sort(container.begin(). container.end(), condition);
+    }
+}
 
 
 /* Template implementation =======================================================================*/
