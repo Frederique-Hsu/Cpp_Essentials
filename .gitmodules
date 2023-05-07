@@ -1,3 +1,6 @@
-[submodule "Textbook"]
-	path = Textbook
+[submodule "cpplects-beamer"]
+	path = cpplects-beamer
+	url = git@github.com:registor/cpplects-beamer.git
+[submodule "CPP_Programming_Language_Textbook"]
+	path = CPP_Programming_Language_Textbook
 	url = project-repositories@vs-ssh.visualstudio.com:v3/project-repositories/CPP_Programming_Language/CPP_Programming_Language
