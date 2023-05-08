@@ -9,6 +9,7 @@ SOURCES += \
         Integer_Type/integer.cpp \
         Miscellaneous/misc.cpp \
         Miscellaneous/scope.cpp \
+        Object_LValue_RValue.cpp \
         initialization.cpp \
         main.cpp \
         type_deduction.cpp \
