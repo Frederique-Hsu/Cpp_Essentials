@@ -11,3 +11,4 @@
 Textbook/
 build*/
 CMake_and_Makefile/cmake-*-tutorial-source/*
+CMake_and_Makefile/src/*

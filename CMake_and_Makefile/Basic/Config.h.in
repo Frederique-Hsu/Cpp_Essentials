@@ -1,0 +1,9 @@
+/*!
+ *  \file       Config.h.in
+ *  \brief      Define the configured options and settings for current project.
+ *  
+ */
+
+
+#define Sqrt_VERSION_MAJOR  @Sqrt_VERSION_MAJOR@
+#define Sqrt_VERSION_MINOR  @Sqrt_VERSION_MINOR@
