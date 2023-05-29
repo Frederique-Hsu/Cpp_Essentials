@@ -9,9 +9,11 @@ SOURCES += \
         Array_Utils.cpp \
         Pointer.cpp \
         Reference.cpp \
-        main.cpp
+        main.cpp \
+        test_Reference.c++
 
 HEADERS += \
     Array.hpp \
     Pointer.hpp \
-    Reference.hpp
+    Reference.hpp \
+    test_Reference.h++
