@@ -16,3 +16,5 @@ struct Address
     char state[2];
     const char* zip;
 };
+
+void print_addr(Address* paddr);
