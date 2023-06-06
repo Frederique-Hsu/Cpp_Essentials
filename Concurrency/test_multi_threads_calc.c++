@@ -39,3 +39,14 @@ TEST(UTester4WaitEvent, CheckWaitEventFinished)
     auto t2 = high_resolution_clock::now();
     std::cout << duration_cast<nanoseconds>(t2 - t1).count() << " nanoseconds passed." << std::endl;
 }
+
+TEST(UTester4MultiThreads, CheckSupportedThreads)
+{
+    auto num = std::thread::hardware_concurrency();
+    std::cout << "Current machine supports " << num << " threads running in parallel." << std::endl;
+
+    std::cout << "Current thread id = " << std::this_thread::get_id() << std::endl;
+
+    std::thread mythread{};
+    std::cout << "My thread's ID = " << mythread.get_id() << std::endl;
+}
