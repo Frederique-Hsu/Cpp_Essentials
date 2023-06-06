@@ -61,6 +61,16 @@ struct AddressBit
     unsigned char b3 : 2;   // 2 bits for b3 - next and final bits in the 2nd byte.
 };
 
+/*!
+ *  \note   大小为0的特殊未命名位域可以强制分解填充。它指定下一个位域从其分配单元的开头开始
+ */
+struct SpecificBitField
+{
+    unsigned char b1 : 3;
+    unsigned char    : 0;   // start a new byte.
+    unsigned char b2 : 2;
+};
+
 
 template<class T>
 inline constexpr bool is_trivially_copyable_v = std::is_trivially_copyable<T>::value;

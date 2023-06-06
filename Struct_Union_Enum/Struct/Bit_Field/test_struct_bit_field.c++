@@ -11,6 +11,7 @@
 #include <iostream>
 #include <cstdint>
 #include <bit>
+#include <stdio.h>
 
 TEST(UTester4StructBitField, AssignBitField)
 {
@@ -39,15 +40,37 @@ TEST(UTester4StructBitField, AccessAdjacentBitFields)
     auto bits = bit_cast<std::uint16_t>(addr);
 #endif
     std::cout << bits << std::endl;
+}
 
-    std::cout << "0b";
-    for (std::uint16_t b = bits, count = 1; b; b >>= 1, ++count)
-    {
-        std::cout << (b & 1);
-        if (count % 4 == 0)
-        {
-            std::cout << "'";
-        }
-    }
-    std:: cout << "\n" << std::endl;
+TEST(UTester4StructBitField, CheckSpecificBitFieldWith0Size)
+{
+    std::cout << "sizeof(SpecificBitField) = " << sizeof(SpecificBitField) << std::endl;
+}
+
+/*================================================================================================*/
+
+int a;
+const int b = 5;
+
+struct BitField
+{
+    int x1 : 8 = 42;                // OK: "=42" is brace-or-equal-initializer
+    int x2 : 8 {42};                // OK: "{42}" is brace-or-equal-initializer
+
+    int y1 : true ? 8 : a = 42;     // OK: brace-or-equal-initializer is absent
+    // int y2 : true ? 8 : b = 42;     // Error: cannot assign to const int.
+    int y3 : (false ? 8 : b) = 42;   // OK: "= 42" is brace-or-equal-initializer
+    int z  : 1 || new int{0};       // OK: brace-or-equal-initializer is absent.
+};
+
+TEST(UTester4StructBitField, CheckHowToInitializeBitField)
+{
+    BitField bit_field;
+
+    std::cout << "sizeof(BitField) = " << sizeof(BitField) << std::endl;
+
+    std::cout << "a = " << a << std::endl;
+    std::cout << "b = " << b << std::endl;
+
+    printf("bit_field = {%d, %d, %d, %d, %d}\n", bit_field.x1, bit_field.x2, bit_field.y1, bit_field.y3, bit_field.z);
 }
