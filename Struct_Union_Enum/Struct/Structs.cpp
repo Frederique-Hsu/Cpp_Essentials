@@ -7,13 +7,20 @@
 
 #include "Structs.hpp"
 
-#include <iostream>
 
-void print_addr(Address* paddr)
+Points::Points(Point p0)
 {
-    std::cout << paddr->name << "\n"
-              << paddr->number << " " << paddr->street << "\n"
-              << paddr->town << "\n"
-              << paddr->state[0] << paddr->state[1] << " " << paddr->zip
-              << std::endl;
+    elements.push_back(p0);
+}
+
+Points::Points(Point p0, Point p1)
+{
+    elements.push_back(p0);
+    elements.push_back(p1);
+}
+
+std::ostream& operator<<(std::ostream& os, Point p)
+{
+    os << "{" << p.x << ", " << p.y << "}";
+    return os;
 }
