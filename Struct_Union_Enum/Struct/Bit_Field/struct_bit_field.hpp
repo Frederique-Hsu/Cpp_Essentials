@@ -71,7 +71,6 @@ struct SpecificBitField
     unsigned char b2 : 2;
 };
 
-
 template<class T>
 inline constexpr bool is_trivially_copyable_v = std::is_trivially_copyable<T>::value;
 
