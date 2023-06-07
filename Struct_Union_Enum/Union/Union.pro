@@ -3,8 +3,16 @@ CONFIG += console c++2a
 CONFIG -= app_bundle
 CONFIG -= qt
 
-LIBS += -lgtest
+LIBS += -lgtest -lpthread
 
-SOURCES +=
+SOURCES += \
+    entry.cpp \
+    main.cpp \
+    test_entry.c++ \
+    test_union.c++ \
+    union.cpp
 
-HEADERS +=
+HEADERS += \
+    entry.hpp \
+    test_entry.h++ \
+    union.hpp
