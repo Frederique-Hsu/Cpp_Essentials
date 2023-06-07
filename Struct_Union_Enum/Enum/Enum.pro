@@ -3,8 +3,12 @@ CONFIG += console c++2a
 CONFIG -= app_bundle
 CONFIG -= qt
 
-LIBS += -lgtest
+LIBS += -lgtest -lpthread
 
-SOURCES +=
+SOURCES += \
+    enumerate.cpp \
+    main.cpp \
+    test_enumerate.c++
 
-HEADERS +=
+HEADERS += \
+    enumerate.hpp
