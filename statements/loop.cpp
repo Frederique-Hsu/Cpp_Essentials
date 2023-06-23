@@ -22,6 +22,8 @@ void input()
 
 void print_backwards(char a[], int i)
 {
+    if (i <= 0)
+        return;
     std::cout << '{';
     do
     {
