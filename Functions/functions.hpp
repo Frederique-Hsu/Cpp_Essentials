@@ -21,3 +21,15 @@ auto to_string(int a) -> std::string;
 
 
 int factorial(int n);
+/*!
+ *  \note   当constexpr(翻译为常量表达式)出现在函数定义中时，它的含义是：如果给定了常量表达式作为实参，则该函数应该
+ *          能用在常量表达式中。
+ *          而当constexpr出现在对象定义中时，它的含义是：在编译时对初始化器求值。
+ */
+constexpr int fac(int n)
+{
+    return (n > 1) ? n * fac(n-1) : 1;
+}
+
+int* fp();
+int& fr();

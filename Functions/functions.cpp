@@ -37,3 +37,38 @@ int factorial(int n)
     return 1;
 #endif
 }
+
+/*!
+ *  \warning    一旦函数返回了结果，所占的存储空间就被释放了。
+ *              因此，不应该返回指向函数局部非static变量的指针。
+ *              也不能返回函数局部非static变量的引用。
+ */
+int* fp()
+{
+    int local = 1;
+
+    /*!
+     *  \note   Address of stack memory associated with local variable `local` returned to
+     *          caller.
+     */
+    return &local;
+}
+
+int& fr()
+{
+    int local = 1;
+
+    /*!
+     *  \note   Address of stack memory associated with local variable `local` returned to caller.
+     */
+    return local;
+}
+
+/*!
+ *  \warning    而且constexpr函数的声明和实现不能分开，须放在一起。
+ *              一般放在头文件，若只被同一个源文件的其他代码调用，则可以放在源文件里。
+constexpr int fac(int n)
+{
+    return (n > 1) ? n * fac(n-1) : 1;
+}
+ */
