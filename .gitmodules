@@ -4,3 +4,6 @@
 [submodule "CPP_Programming_Language_Textbook"]
 	path = CPP_Programming_Language_Textbook
 	url = project-repositories@vs-ssh.visualstudio.com:v3/project-repositories/CPP_Programming_Language/CPP_Programming_Language
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/google/googletest.git
