@@ -49,10 +49,12 @@ void copy(char* dest, const char* src)
     }
     *dest = 0;
 #elif (STRING_COPY_METHOD == STRING_COPY_REMOVE_NULL_TERMINATOR_METHOD)
-    while ((*dest++ = *src++) != 0)     // (*dest++ = *src++) 的值是 *src
+    // 先把*src拷贝给*dest，并递增src的值，然后判断*src是否为0
+    while ((*dest++ = *src++) != 0)
     {
     }
 #else
+    // 由于当整数*src作为条件时，无论如何都会与0进行比较，所以！= 0也是冗余的。
     while (*dest++ = *src++);
 #endif
 }

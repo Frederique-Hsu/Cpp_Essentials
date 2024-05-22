@@ -9,6 +9,7 @@
 #include <bitset>
 #include <iostream>
 #include <vector>
+#include <cstdint>
 
 TEST_GROUP(UTester4ExpressionOperators)
 {
