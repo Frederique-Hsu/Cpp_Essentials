@@ -8,7 +8,8 @@ LIBS = -lgtest -lpthread
 SOURCES +=  \
     loop.cpp \
     main.cpp \
-    statements.cpp
+    statements.cpp \
+    test_statements.c++
 
 
 HEADERS +=  \

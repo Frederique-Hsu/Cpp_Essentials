@@ -63,7 +63,7 @@ int sum(std::vector<int>& vec)
 {
     int s = 0;
 #if 0
-    for (int elem : vec)
+    for (int elem : vec)    // range-for loop
     {
         s += elem;
     }
@@ -82,4 +82,39 @@ void increment(std::vector<int>& vec)
     {
         ++elem;
     }
+}
+
+void fn(std::vector<std::string>& vec, int i, const char* p)
+{
+    if (p == nullptr)
+        return;
+    if (i < 0 || vec.size() <= i)
+    {
+        std::perror("bad index");
+    }
+    std::string s = vec[i];
+    if (s == p)
+    {
+        // ....
+    }
+}
+
+void input_integer()
+{
+    constexpr const int max = 0xFF;
+    int buff[max];
+    int count = 0;
+    for (int i; std::cin >> i;)
+    {
+        if (i < 0)
+        {
+            std::perror("unexpected negative value");
+        }
+        if (count == max)
+        {
+            std::perror("buffer overflow");
+        }
+        buff[count++] = i;
+    }
+    // ...
 }

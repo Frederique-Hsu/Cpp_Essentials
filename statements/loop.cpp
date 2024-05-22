@@ -10,7 +10,7 @@
 #include <string>
 #include <iostream>
 
-void input()
+void input_string()
 {
     std::vector<std::string> str_vec;
 

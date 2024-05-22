@@ -9,7 +9,11 @@
 #define STATEMENTS_HPP
 
     #include <vector>
+    #include <string>
 
+    /*!
+     *  \section    Prototypes
+     */
     enum E1
     {
         a,
@@ -37,6 +41,8 @@
     int sum(std::vector<int>& vec);
     void increment(std::vector<int>& vec);
 
+    void fn(std::vector<std::string>& vec, int i, const char* p);
 
+    void input_integer();
 
 #endif  /* STATEMENTS_HPP */
