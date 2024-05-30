@@ -8,6 +8,9 @@
 #include "test_constexpr_functions.h++"
 #include "functions.hpp"
 
+#include <complex>
+#include <stdexcept>
+
 /*!
  *  \brief  constexpr function.
  *  \note
@@ -92,4 +95,66 @@ TEST_F(UTest4ConstexprFunction, ValidateWhenFunctionIsEvaluatedAtCompileTime)
 {
     int n = 10;
     fn(n);
+}
+
+/*================================================================================================*/
+
+constexpr int ftbl[] {1, 2, 3, 5, 8, 13};
+
+constexpr int fib(int n)
+{
+    return (n < sizeof(ftbl) / sizeof(*ftbl)) ? ftbl[n] : fib(n-1) + fib(n-2);
+}
+
+/*!
+ *  \note   It is possible for a constexpr function to return a reference or a pointer.
+ */
+constexpr const int* addr(const int& r)
+{
+    return &r;
+}
+
+TEST_F(UTest4ConstexprFunction, Check_constexpr_and_reference)
+{
+    EXPECT_EQ(fib(3), 5);
+    EXPECT_EQ(fib(5), 13);
+    EXPECT_EQ(fib(6), 21);
+    EXPECT_EQ(fib(7), 34);
+
+    constexpr std::complex<float> z{2.0};
+    EXPECT_DOUBLE_EQ(z.real(), 2.0);
+
+    /*========================================================*/
+
+    static const int x = 5;
+    constexpr const int* p1 = addr(x);
+    constexpr int xx = *p1;
+    EXPECT_EQ(xx, 5);
+
+    static int y;
+    constexpr const int* p2 = addr(y);
+    // constexpr int yy = *p2;     // error: attempt to read a variable
+    EXPECT_EQ(&y, p2);
+    // constexpr const int* tp = addr(5);  // error: constexpr variable 'tp' must be initialized by a constant expression.
+}
+
+constexpr int low = 0;
+constexpr int high = 99;
+
+constexpr int check(int i)
+{
+    return ((low <= i) && (i < high)) ? i : throw std::out_of_range("out of range");
+}
+
+TEST_F(UTest4ConstexprFunction, Check_conditional_evaluation)
+{
+    auto fn = [](int x, int y, int z)
+    {
+        return x + y + z;
+    };
+
+    constexpr int value = check(fn(1, 2, 3));
+    EXPECT_EQ(value, 6);
+
+    EXPECT_THROW(check(fn(101, 102, 103)), std::out_of_range);
 }
