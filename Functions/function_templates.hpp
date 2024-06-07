@@ -10,8 +10,7 @@
 #include <vector>
 
 /*!
- *  \note   The essential use for a suffix return type comes in function template declarations \n
- *          in which the return type depends on the arguments
+ *  \note   后置返回类型的必要性源于函数模板的声明，因为其返回类型是依赖于参数的。 如下：
  */
 template<class T, class U>
 auto product(const std::vector<T>& x,

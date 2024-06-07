@@ -12,12 +12,12 @@
 void swap(int*, int*);
 
 #if defined(FUNCTION_REDEFINITION)
-/*!
- *  \warning    The below 2 f() functions are duplicated.
- *              they are the same type void(int)
- */
-void f(int);            // type is void(int)
-void f(const int);      // type is void(int)
+    /*!
+     *  \warning    The below 2 f() functions are duplicated.
+     *              they are the same type void(int)
+     */
+    void f(int);            // type is void(int)
+    void f(const int);      // type is void(int)
 #endif
 
 int& max(int& a, int& b, int& c);
@@ -37,4 +37,5 @@ inline int fac(int n)
      */
     return (n < 2) ? 1 : n * fac(n-1);
 }
+
 int fac2(int n);

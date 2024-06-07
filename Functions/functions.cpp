@@ -16,15 +16,15 @@ void swap(int* p, int* q)
 }
 
 #if defined(FUNCTION_REDEFINITION)
-void f(int x)   /*! \note   we can modify x here */
-{
-    (void)x;
-}
+    void f(int x)   /*! \note   we can modify x here */
+    {
+        (void)x;
+    }
 
-void f(const int x)     /*! \note   we cannot modify x here */
-{
-    (void)x;
-}
+    void f(const int x)     /*! \note   we cannot modify x here */
+    {
+        (void)x;
+    }
 #endif
 
 /*!
