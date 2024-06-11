@@ -7,6 +7,7 @@
 
 #include <gtest/gtest.h>
 
+#include "arguments/variadic_arguments.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -17,6 +18,9 @@ int main(int argc, char* argv[])
     {
         std::cout << "argv[" << index << "] = " << argv[index] << std::endl;
     }
+
+    auto args = arguments(argc, argv);
+    error((args.size() < 2) ? 0 : 1, args);
 
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
