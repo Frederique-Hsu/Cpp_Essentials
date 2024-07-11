@@ -7,27 +7,52 @@
 
 #pragma once
 
+#include <string>
+#include <iostream>
+
 namespace Lexer
 {
-enum class Kind : char
-{
-    number,
-    name,
-    minus,
-    lp,
-    rp,
-    assign
-};
+    enum class Kind : char
+    {
+        name,
+        number,
+        end,
+        plus = '+',
+        minus = '-',
+        mul = '*',
+        div = '/',
+        print = ';',
+        assign = '=',
+        lp = '(',
+        rp = ')'
+    };
 
-class Token
-{
-public:
-};
+    struct Token
+    {
+        Kind kind;
+        std::string string_value;
+        double number_value;
+    };
 
-class TokenStream
-{
-public:
-};
+    class TokenStream
+    {
+    public:
+        TokenStream(std::istream& s);
+        TokenStream(std::istream* p);
+        ~TokenStream();
+    private:
+        std::istream* ip;
+        bool owns;
+        Token ct;
+    public:
+        Token get();
+        Token& current();
 
-TokenStream ts;
+        void set_input(std::istream& s);
+        void set_input(std::istream* p);
+    private:
+        void close();
+    };
+
+    // extern TokenStream ts;
 }

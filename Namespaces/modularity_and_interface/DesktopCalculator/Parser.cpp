@@ -5,10 +5,11 @@
  */
 
 
-#include "Parser.hpp"
+#include "Parser_Impl.hpp"
 #include "Lexer.hpp"
 #include "Table.hpp"
 #include "Error.hpp"
+
 
 double Parser::prim(bool get)
 {
@@ -22,6 +23,8 @@ double Parser::prim(bool get)
     using namespace Error;
     using namespace Table;
 #endif
+
+    TokenStream ts(std::cin);
 
     if (get)
     {
@@ -38,7 +41,7 @@ double Parser::prim(bool get)
     }
     case Kind::name:
     {
-        double& v = table[Lexer::ts.current().string_value];
+        double& v = table[ts.current().string_value];
         if (ts.get().kind == Kind::assign)
         {
             v = expr(true);

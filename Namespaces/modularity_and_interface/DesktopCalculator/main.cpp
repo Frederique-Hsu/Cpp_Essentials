@@ -5,8 +5,6 @@
  */
 
 
-
-#define BOOST_TEST_MODULE   DesktopCalculatorUnitTest
+#define BOOST_TEST_MODULE   Test_Desktop_Calculator
 
 #include <boost/test/included/unit_test.hpp>
-

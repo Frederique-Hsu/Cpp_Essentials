@@ -10,6 +10,4 @@
 namespace Parser
 {
 double expr(bool);
-double prim(bool get);
-double term(bool get);
 }

@@ -17,4 +17,5 @@ HEADERS += \
     Error.hpp \
     Lexer.hpp \
     Parser.hpp \
+    Parser_Impl.hpp \
     Table.hpp

@@ -9,5 +9,7 @@
 
 namespace Driver
 {
-void calculator();
+    void calculator();
 }
+
+int& use_count();
