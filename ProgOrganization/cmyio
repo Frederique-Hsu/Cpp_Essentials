@@ -1,0 +1,22 @@
+/*!
+ *  \file       cmyio
+ *  \brief      Define my io header file.
+ *
+ */
+
+
+#ifdef __cplusplus
+    namespace my
+    {
+        extern "C"
+        {
+#endif
+
+            int printf(const char*, ...);
+
+#ifdef __cplusplus
+        }
+    }
+
+    using my::printf;   // 令printf在全局名字空间中可用
+#endif
