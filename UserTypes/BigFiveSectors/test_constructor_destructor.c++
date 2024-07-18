@@ -401,7 +401,7 @@ SCENARIO("Default constructor")
         {
             auto fn = []() {
                 int a0;
-                int a1();
+                // int a1();
 
                 int i{};
                 double d{};

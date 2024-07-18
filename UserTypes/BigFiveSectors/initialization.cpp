@@ -108,4 +108,4 @@ const int Curious::c4 = std::sqrt(9);
 
 const float Curious::c5 = 7.0;
 
-const int* ptr = &Curious::c1;
+// const int* ptr = &Curious::c1;
