@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <list>
 #include <map>
+#include <initializer_list>
 
 #include "constructor_destructor.hpp"
 #include "finally.hpp"
@@ -486,4 +487,164 @@ SCENARIO("Initializer-list constructors")
     REQUIRE(years.size() == 3);
 
     years.insert({Key{"Bjarne", "Stroustrup"}, Value{1950, 1957, 1985}});
+
+    GIVEN("A class has defined multiple constructors")
+    {
+        #include <iostream>
+
+        using namespace std;
+
+        class X
+        {
+        public:
+            X()                             // default constructor
+            {
+                cout << "called the default constructor." << endl;
+            }
+            explicit X(int)                 // ordinary constructor
+            {
+                cout << "called the ordinary constructor." << endl;
+            }
+            X(std::initializer_list<int>)   // initializer-list constructor
+            {
+                cout << "called the initializer-list constructor." << endl;
+            }
+            X(const X&)                     // copy constructor
+            {
+                cout << "called the copy constructor." << endl;
+            }
+            X(X&&)                          // move constructor
+            {
+                cout << "called the move constructor." << endl;
+            }
+            X& operator=(const X&)          // copy assignment
+            {
+                cout << "called the copy assignment." << endl;
+                return *this;
+            }
+            X& operator=(X&&)               // move assignment
+            {
+                cout << "called the move assignment." << endl;
+                return *this;
+            }
+            ~X()                            // destructor
+            {
+                cout << "called the destructor." << endl;
+            }
+        };
+
+        WHEN("When selecting the constructor, which one is preferred?")
+        {
+            /*!
+             *  \note   如果一个类已有多个构造函数，则编译器会使用常规的重载解析规则根据给定参数选择一个正确的构造函数。
+             *          当选择构造函数时，默认构造函数和初始化器列表构造函数优先。
+             *
+             *  \list   具体规则如下：
+             *      \li 如果默认构造函数或初始化器列表构造函数都匹配，优先选择默认构造函数。
+             *      \li 如果一个初始化器列表构造函数和一个“普通构造函数”都匹配，优先选择初始化器列表构造函数。
+             *  \endlist
+             */
+            X x0{};     // 空列表： 是选择默认构造函数还是初始化器列表构造函数？ 答案：选择默认构造函数
+
+            X x1{1};    // 一个整数： 是选择一个整型参数普通构造函数还是一个单元素的初始化器列表构造函数？ 答案：选择初始化器列表构造函数
+
+            X x2(3);    // 非列表，只是一个简单参数： 答案：选择普通构造函数
+        }
+
+        WHEN("Consider the below std::vector<T> objects")
+        {
+            /*!
+             *  \note   以下vector创建的对象都调用初始化器列表构造函数
+             */
+            std::vector<int> v1{1};         REQUIRE(v1.size() == 1);    REQUIRE(v1[0] == 1);
+            std::vector<int> v2{1, 2};      REQUIRE(v2.size() == 2);    REQUIRE((v2[0] == 1 and v2[1] == 2));
+            std::vector<int> v3{1, 2, 3};   REQUIRE(v3.size() == 3);
+
+            std::vector<std::string> vs1{"one"};                    REQUIRE(vs1.size() == 1);
+            std::vector<std::string> vs2{"one", "two"};             REQUIRE(vs2.size() == 2);
+            std::vector<std::string> vs3{"one", "two", "three"};    REQUIRE(vs3.size() == 3);
+
+            /*!
+             *  \note   如果真的希望调用接受一个或两个整型参数的构造函数，就必须使用()语法
+             */
+            std::vector<int> vec1(1);       REQUIRE(vec1.size() == 1);  REQUIRE(vec1[0] == 0);
+            std::vector<int> vec2(1, 2);    REQUIRE(vec2.size() == 1);  REQUIRE(vec2[0] == 2);
+            std::vector<int> vec3(3, 1);    REQUIRE(vec3.size() == 3);  REQUIRE(vec3[0] == 1);  REQUIRE(vec3[1] == 1);  REQUIRE(vec3[2] == 1);
+            // std::vector<int> vec4(4, 1, 2, 3, 4);   // No matching constructor for vector<T>
+        }
+    }
+
+    GIVEN("Utilize the initializer_list")
+    {
+        #define BY_INDEX            1
+        #define BY_ITERATOR         2
+        #define BY_RANGE_FOR_LOOP   3
+        #define VISIT_INITIALIZER_LIST_MEMBERS      BY_ITERATOR
+
+        /*!
+         *  \note       使用initializer_list
+         *  \details    可以将接受一个initializer_list<T>参数的函数作为一个序列来访问。
+         *              initializer_list<T>是以传值方式传递的。这是重载解析规则所要求的，而且不会带来额外开销。
+         *              因为一个initializer_list<T>对象只是一个小句柄（通常是2个字节大小），
+         *              指向一个元素类型为T的数组。
+         */
+        auto access = [](std::initializer_list<int> args)
+        {
+        #if (VISIT_INITIALIZER_LIST_MEMBERS == BY_INDEX)
+            for (auto i = 0U; i != args.size(); ++i)
+            {
+                std::cout << args.begin()[i] << "  ";
+            }
+        #elif (VISIT_INITIALIZER_LIST_MEMBERS == BY_ITERATOR)
+            for (auto iter = args.begin(); iter != args.end(); ++iter)
+            {
+                std::cout << *iter << "  ";
+            }
+        #elif (VISIT_INITIALIZER_LIST_MEMBERS == BY_RANGE_FOR_LOOP)
+            for (auto arg : args)
+            {
+                std::cout << arg << "  ";
+            }
+        #endif
+            std::cout << "\n" << std::endl;
+        };
+
+        WHEN("visiting the every element inside the initializer_list<T>")
+        {
+            std::initializer_list<int> numbers{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            access(numbers);
+            REQUIRE(numbers.size() == 10);
+        }
+
+        auto cannotModifyInitializerList = [](std::initializer_list<int>& numbers, int new_value) {
+            // *(numbers.begin()) = new_value;     // Error: initializer_list<T>里面的元素是不可改变的，不能修改其元素
+            // numbers[0] = new_value;     // Error: initializer_list<T>不提供下标操作
+            return *numbers.begin();
+        };
+
+        WHEN("modifying the element inside the initializer_list<T>")
+        {
+            /*!
+             *  \attention  由于initializer_list<T>元素不可修改，因此就不能对其使用移动构造函数。
+             */
+            std::initializer_list<int> nums{9, 15, 32, 101};
+            int num = cannotModifyInitializerList(nums, -100);
+            REQUIRE(num == 9);
+
+            THEN("compilation will fail")
+            {
+                for (auto& elem : nums)
+                {
+                    /*!
+                     *  \warning    Cannot assign to variable 'elem' with const-qualified type 'const int&'
+                     *              variable 'elem' is declared const here.
+                     *
+                    elem += 10;
+                     */
+                    std::cout << elem << ", ";
+                }
+                std::cout << "\n" << std::endl;
+            }
+        }
+    }
 }
