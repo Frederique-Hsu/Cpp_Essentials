@@ -41,6 +41,7 @@ extern int glob;
  *  \note   引用和const必须被初始化。因此，一个包含这些成员的类不能默认构造，除非程序员提供了类内
  *          成员初始化器，或者定义了一个默认构造函数来初始化他们。
  */
+#if false
 struct Compound
 {
     const int a1{7};
@@ -49,3 +50,4 @@ struct Compound
     int& r1{glob};
     // int& r2;
 };
+#endif

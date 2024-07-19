@@ -15,16 +15,16 @@ template<class T>
 class Container
 {
 public:
-    explicit Container(int size = 0, T init_value = T{});
+    explicit Container(size_t size = 0, T init_value = T{});
     Container(std::initializer_list<T> elements);
     virtual ~Container();
 
 private:
-    int m_size;
+    size_t m_size;
     T* m_element_array;
 
 public:
-    int size() const;
+    size_t size() const;
     T operator[](unsigned int index) const;
     T* begin() const;
     T* end() const;
@@ -46,7 +46,7 @@ my::Container<T>::~Container()
 }
 
 template<class T>
-my::Container<T>::Container(int size, T init_value) : m_size{size}, m_element_array{nullptr}
+my::Container<T>::Container(size_t size, T init_value) : m_size{size}, m_element_array{nullptr}
 {
     if (size > 0)
     {
@@ -72,7 +72,7 @@ my::Container<T>::Container(std::initializer_list<T> elements)
 }
 
 template<class T>
-int my::Container<T>::size() const
+size_t my::Container<T>::size() const
 {
     return m_size;
 }

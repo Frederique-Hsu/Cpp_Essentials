@@ -11,6 +11,6 @@ file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
 list(FILTER sources EXCLUDE REGEX "${CMAKE_SOURCE_DIR}/build/")
 
-add_executable(BigFiveSectors ${sources} ${headers})
+add_executable(${PROJECT_NAME} ${sources} ${headers})
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Catch2::Catch2)
+target_link_libraries(${PROJECT_NAME} PRIVATE Catch2::Catch2)

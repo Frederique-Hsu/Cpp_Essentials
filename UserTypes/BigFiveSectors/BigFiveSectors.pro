@@ -6,25 +6,20 @@ LIBS += -lCatch2
 
 DEFINES += DEBUG
 
-SOURCES += \
-        big_five_sectors.cpp \
-        constructor_destructor.cpp \
-        initialization.cpp \
-        main.cpp \
-        test_big_five_sectors.c++ \
-        test_constructor_destructor.c++ \
-        test_initialization.c++ \
-        test_my_container.c++
+
+# Search all the code files under the specified directory
+root_dir = .
+
+# Recursively search the source, header files, and concatenate them respectively
+for(subdir, root_dir) {
+        SOURCES += $$files($$join(subdir, , , /*.cpp), true)
+        SOURCES += $$files($$join(subdir, , , /*.c++), true)
+        SOURCES += $$files($$join(subdir, , , /*.c), true)
+        HEADERS += $$files($$join(subdir, , , /*.hpp), true)
+        HEADERS += $$files($$join(subdir, , , /*.h++), true)
+        HEADERS += $$files($$join(subdir, , , /*.h), true)
+        # FORMS   += $$files($$join(subdir, , , /*.ui), true)
+}
 
 DISTFILES += \
     CMakeLists.txt
-
-HEADERS += \
-    big_five_sectors.hpp \
-    constructor_destructor.hpp \
-    finally.hpp \
-    finally_impl.hpp \
-    initialization.hpp \
-    my_container.hpp \
-    pointers.hpp \
-    pointers_impl.hpp

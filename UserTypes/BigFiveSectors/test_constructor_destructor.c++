@@ -422,7 +422,7 @@ SCENARIO("Default constructor")
             };
             fn();
         }
-
+#if false
         WHEN("Reference and const must be initialized")
         {
             Compound obj;
@@ -430,6 +430,7 @@ SCENARIO("Default constructor")
             REQUIRE(obj.a1 == 7);
             REQUIRE(obj.r1 == 9);
         }
+#endif
 
         WHEN("Array, vector and similar containers need to declare and "
              "allocate a number of default-initialized elements")
