@@ -1,7 +1,7 @@
 /*!
  *  \file       copy.hpp
- *  \brief      
- *  
+ *  \brief
+ *
  */
 
 
