@@ -139,3 +139,89 @@ TEST_CASE("Check the virtual destructor", "[virtual destructor]")
         user(pobj);
     }
 }
+
+TEST_CASE("Check which is calling the Big-Five-Sectors of a class respectively")
+{
+    auto call = [](const GSlice& arg)
+    {
+        GSlice gs0;                     // Default constructor
+        std::fprintf(stderr, "&gs0 = %p\n\n", &gs0);
+
+        GSlice gs1(gs0);                // Copy constructor
+        std::fprintf(stderr, "&gs1 = %p\n\n", &gs1);
+
+        GSlice gs2 = arg;               // Copy constructor
+        std::fprintf(stderr, "&gs2 = %p\n\n", &gs2);
+
+        gs2 = gs0;                      // Copy assignment
+        std::fprintf(stderr, "&gs2 = %p\n\n", &gs2);
+
+        GSlice robj = std::move(gs0);   // Move constructor
+        std::fprintf(stderr, "&robj = %p\n\n", &robj);
+
+        robj = std::move(gs1);          // Move assignment
+        std::fprintf(stderr, "&obj = %p\n\n", &robj);
+
+        return robj;
+    };
+
+    SECTION("Invoke the previous lambda function to see their logs")
+    {
+        GSlice obj(5);                  // Ordinary constructor
+        std::fprintf(stderr, "&obj = %p\n\n", &obj);
+
+        auto result = call(obj);
+        std::fprintf(stderr, "&result = %p\r\n", &result);
+    }
+}
+
+TEST_CASE("Deleting the function can prevent from calling it", "[delete]")
+{
+    auto fn = [](Circle* pc, Foo* pf) {
+        Circle* pc2 = clone(pc);
+        // Foo* pf2 = clone(pf);   // Error: clone(Foo*)已被删除，不能调用
+
+        delete pc2;
+    };
+
+    struct Z
+    {
+        Z(double d) : elem{d} {}
+        Z(int) = delete;
+        
+    private:
+        double elem;
+    };
+
+    SECTION("Check how the deleted constructor can prevent from calling them")
+    {
+        // Z zint{5};       // Error: Z(int) constructor had been remarked "=delete"
+        Z zdouble{1.0};
+    }
+
+    /*!
+     *  \attention  delete的进一步用途是控制在哪里分配类对象
+     */
+    class NotOnStack
+    {
+    public:
+        ~NotOnStack() = delete;
+    };
+
+    class NotOnFreeStore
+    {
+    public:
+        void* operator new(std::size_t) = delete;
+    };
+
+    SECTION("Deleting destructor and new operator can control where to allocate for objects")
+    {
+        // NotOnStack v1;      // Error: 该对象v1不能在栈空间被销毁
+        NotOnFreeStore v2;  // OK
+
+        NotOnStack* p1 = new NotOnStack;        // OK
+        // NotOnFreeStore* p2 = new NotOnFreeStore;    // Error: 不能在自由堆空间为指针对象p2分配内存。
+
+        // delete p1;      // 但这样也永远不能使用delete删除NotOnStack对象p1了。
+    }
+}

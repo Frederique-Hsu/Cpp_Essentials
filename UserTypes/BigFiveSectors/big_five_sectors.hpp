@@ -8,6 +8,8 @@
 #pragma once
 
 #include <string>
+#include <valarray>
+#include <vector>
 
 /*!
  *  \section    Definitions
@@ -86,3 +88,82 @@ public:
 };
 
 /*================================================================================================*/
+
+class GSlice
+{
+    std::valarray<std::size_t> size;
+    std::valarray<std::size_t> stride;
+    std::valarray<std::size_t> dice;
+
+public:
+    GSlice();
+    ~GSlice();
+    explicit GSlice(int element_count);
+    GSlice(const GSlice&);
+    GSlice(GSlice&&);
+    GSlice& operator=(const GSlice&);
+    GSlice& operator=(GSlice&&);
+};
+
+
+class TicTacToe
+{
+public:
+    enum class State
+    {
+        empty,
+        nought,
+        cross
+    };
+
+public:
+    TicTacToe() = default;
+    TicTacToe(const TicTacToe&) = default;
+    TicTacToe& operator=(const TicTacToe&) = default;
+    ~TicTacToe() = default;
+    
+private:
+    std::vector<State> pos{std::vector<State>(9)};
+};
+
+/*!
+ *  \note       对于每一个类，我们都应该问：
+ *  \list
+ *      \li     需要默认构造函数吗？ （由于默认构造函数不能满足要求或已被另一个构造函数所禁止）
+ *      \li     需要析构函数吗？ （例如，由于某些资源需要释放）
+ *      \li     需要拷贝操作吗？ (由于默认拷贝语义不能满足需求，例如，由于类是一个基类，或它包含指针，指向的对象必须被释放。)
+ *      \li     需要移动操作吗？ (由于默认语义不能满足需求，例如，由于空对象无意义。)
+ *  \endlist
+ */
+
+class Base
+{
+public:
+    Base() = default;
+    ~Base() = default;
+
+    /*!
+     *  \attention  我们可以“删除”一个函数：即，可以声明一个函数不存在，从而令（隐式或显式）使用它的尝试成为错误。
+     *              这种机制最明显的应用是消除其他默认函数。例如，防止拷贝基类很常见的，因为这种拷贝容易导致切片。
+     */
+    Base(const Base&) = delete;
+    Base& operator=(const Base&) = delete;
+    Base(Base&&) = delete;
+    Base& operator=(Base&&) = delete;
+};
+
+
+template<class T> T* clone(T* ptr)
+{
+    return new T{*ptr};
+}
+
+class Foo
+{
+};
+
+/*!
+ *  \note   可以使用delete删除任何我们能声明的函数。
+ *          例如，我们可以将一个特例化版本从函数模板的众多可能的特例化版本中删除。
+ */
+Foo* clone(Foo*) = delete;      // 不要尝试克隆一个Foo

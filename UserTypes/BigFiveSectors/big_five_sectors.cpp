@@ -96,3 +96,59 @@ Circle::~Circle()
 {
     std::cout << "called the derived class Circle::~Circle()" << std::endl;
 }
+
+GSlice::GSlice() : size{}, stride{}, dice{}
+{
+    std::clog << "Default constructor: GSlice::GSlice()" << std::endl;
+}
+
+GSlice::GSlice(const GSlice& rhs) : size{rhs.size}, stride{rhs.stride}, dice{rhs.dice}
+{
+    std::clog << "Copy constructor: GSlice::GSlice(const GSlice&)" << std::endl;
+}
+
+GSlice::GSlice(int element_count)
+    : size(element_count), stride(element_count), dice(element_count)
+{
+    std::clog << "Ordinary constructor: GSlice::GSlice(int)" << std::endl;
+}
+
+GSlice& GSlice::operator=(const GSlice& rhs)
+{
+    std::clog << "Copy assignment: GSlice& GSlice::operator=(const GSlice&)" << std::endl;
+
+    if (this != &rhs)
+    {
+        size = rhs.size;
+        stride = rhs.stride;
+        dice = rhs.dice;
+    }
+    return *this;
+}
+
+GSlice::GSlice(GSlice&&)
+{
+    std::clog << "Move constructor: GSlice::GSlice(GSlice&&)" << std::endl;
+}
+
+GSlice& GSlice::operator=(GSlice&& rhs)
+{
+    std::clog << "Move assignment: GSlice& GSlice::operator=(GSlice&&)" << std::endl;
+
+    size = rhs.size;
+    stride = rhs.stride;
+    dice = rhs.dice;
+
+    rhs.size.resize(0);
+    rhs.stride.resize(0);
+    rhs.dice.resize(0);
+    return *this;
+}
+
+GSlice::~GSlice()
+{
+    // std::printf("\nthis pointer = %p\n", this);
+
+    std::fprintf(stderr, "\nthis pointer = %p\n", this);
+    std::clog << "Destructor: GSlice::~GSlice()\n" << std::endl;
+}
