@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 
+
 template<class T> class Matrix
 {
 public:
@@ -34,6 +35,9 @@ public:
     void assign(const std::vector<T>& vec);
     T& at(int row_index = 1, int col_index = 1);
     const T& at(int row_index = 1, int col_index = 1) const;
+
+    Matrix<T> operator+(const Matrix<T>& rhs);
+    Matrix<T>& operator+=(const Matrix<T>& rhs);
 };
 
 template<class T> Matrix<T> operator+(const Matrix<T>& a, const Matrix<T>& b);

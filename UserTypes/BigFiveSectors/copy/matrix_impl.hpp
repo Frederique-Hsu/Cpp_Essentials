@@ -213,3 +213,41 @@ template<class T> bool operator==(const Matrix<T>& a, const Matrix<T>& b)
     }
     return true;
 }
+
+template<class T>
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& rhs)
+{
+    if ((dimension[0] != rhs.dimension[0]) || (dimension[1] != rhs.dimension[1]))
+    {
+        throw std::runtime_error("Unequal matrix dimension");
+    }
+
+    Matrix<T> result{dimension[0], dimension[1]};
+    for (auto row = 1; row <= dimension[0]; ++row)
+    {
+        for (auto col = 1; col < dimension[1]; ++col)
+        {
+            result.at(row, col) = at(row, col) + rhs.at(row, col);
+        }
+    }
+    return result;
+}
+
+template<class T>
+Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& rhs)
+{
+    if ((dimension[0] != rhs.dimension[0]) || (dimension[1] != rhs.dimension[1]))
+    {
+        throw std::runtime_error("Bad matrix += argument");
+    }
+
+    double* p = elements;
+    double* q = rhs.elements;
+    double* end = p + dimension[0] * dimension[1];
+
+    while (p != end)
+    {
+        *p++ = *q++;
+    }
+    return *this;
+}
