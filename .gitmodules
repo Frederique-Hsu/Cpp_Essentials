@@ -7,3 +7,6 @@
 [submodule "googletest"]
 	path = googletest
 	url = https://github.com/google/googletest.git
+[submodule "CMake_and_Makefile/cmake-cookbook"]
+	path = CMake_and_Makefile/cmake-cookbook
+	url = https://github.com/dev-cafe/cmake-cookbook.git
