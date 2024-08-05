@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(Condition LANGUAGES CXX)
 
 
-set(USE_LIBRARY ON)
+# set(USE_LIBRARY ON)
+option(USE_LIBRARY "Compile sources into a library?" OFF)
+
 message(STATUS "Compile sources into a library?  ${USE_LIBRARY}")
 
 set(BUILD_SHARED_LIBS YES)
