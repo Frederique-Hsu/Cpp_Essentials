@@ -1,5 +1,5 @@
 [submodule "cpplects-beamer"]
-	path = cpplects-beamer
+	path = Programming_Books/cpplects-beamer
 	url = git@github.com:registor/cpplects-beamer.git
 [submodule "googletest"]
 	path = googletest
