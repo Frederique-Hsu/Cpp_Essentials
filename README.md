@@ -4,9 +4,6 @@
 
 > C++程序设计语言
 > 
-> *The C++ Programming Language (Fourth Edition)*
-
-<img src="Bjarne Stroustrup, The C++ Programming Language (Part1 - Part3).png">
-<img src="Bjarne Stroustrup: The C++ Programming Language (Part4).png">
+> *[The C++11 Programming Language (Fourth Edition)](Programming_Books/The%20C++%20Programming%20Language,%20Fourth%20Edition%20(Bjarne%20Stroustrup).pdf)* by Bjarne Stroustrup, the creator of C++
 
 而保存代码的。
