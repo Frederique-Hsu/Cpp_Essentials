@@ -5,6 +5,10 @@
  */
 
 
+#ifdef DEBUG_WITH_LOG
+    #include <iostream>
+#endif
+
 template<typename FnType>
 class FinalAction
 {
@@ -40,5 +44,5 @@ FinalAction<FnType> finalize(FnType fn)
 #ifdef DEBUG_WITH_LOG
     std::clog << "Called FinalAction<FnType> finalize(FnType fn) function template" << std::endl;
 #endif
-    return FinalAction(fn);
+    return FinalAction<FnType>(fn);
 }
