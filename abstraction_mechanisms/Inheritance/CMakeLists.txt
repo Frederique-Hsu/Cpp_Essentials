@@ -12,7 +12,7 @@ file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
 
 add_executable(${CURRENT_PROJECT_NAME} "")
-target_sources(Inheritance PRIVATE
+target_sources(${CURRENT_PROJECT_NAME} PRIVATE
     ${sources}
     ${headers})
 
