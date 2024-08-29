@@ -5,10 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "RTTI_and_Cast Debug",
+            "name": "Interface_Polymorph Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/RTTI_and_Cast/RTTI_and_Cast",
+            "program": "${workspaceFolder}/build/Interface_Polymorph/Interface_Polymorph",
+            "args": ["--log_level=all", "--report_level=short"],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "RTTI Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/RTTI/RTTI",
             "args": ["-c", "-v"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
