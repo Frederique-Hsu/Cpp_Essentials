@@ -18,7 +18,7 @@ private:
     Point m_p2;
     Point m_p3;
 public:
-    Point gravity_center_point();
+    Point gravity_center_point() const;
     Point ortho_center_point();
     Point circum_center_point();
     Point inner_center_point();

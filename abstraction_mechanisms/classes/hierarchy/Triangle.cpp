@@ -56,7 +56,7 @@ double Triangle::perimeter()
  *  \param      none
  *  \return     the gravity center point
  */
-Point Triangle::gravity_center_point()
+Point Triangle::gravity_center_point() const
 {
     double center_x = (m_p1.x() + m_p2.x() + m_p3.x()) / 3.0;
     double center_y = (m_p1.y() + m_p2.y() + m_p3.y()) / 3.0;

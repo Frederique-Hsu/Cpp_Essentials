@@ -28,6 +28,8 @@ Traffic_Light& operator++(Traffic_Light& t)
         return t = Traffic_Light::red;
     case Traffic_Light::red:
         return t = Traffic_Light::green;
+    default:
+        return t = Traffic_Light::green;
     }
 }
 
