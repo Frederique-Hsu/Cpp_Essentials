@@ -5,9 +5,9 @@
  */
 
 
-#include "io.hpp"
-
 #include <boost/test/unit_test.hpp>
+
+#include "io.hpp"
 
 BOOST_AUTO_TEST_SUITE(UTest_InterfacePolymorph)
 

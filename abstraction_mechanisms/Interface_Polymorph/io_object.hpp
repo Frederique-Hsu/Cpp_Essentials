@@ -8,6 +8,7 @@
 #pragma once
 
 #include <iostream>
+#include <array>
 
 class IOObject
 {
@@ -73,4 +74,12 @@ public:
 public:
     IOTriangle* clone() const override;
     static IOObject* new_triangle(std::istream& is);
+};
+
+class Face : public Shape
+{
+public:
+    Shape* outline;
+    std::array<Shape*, 2> eyes;
+    Shape* mouth;
 };
