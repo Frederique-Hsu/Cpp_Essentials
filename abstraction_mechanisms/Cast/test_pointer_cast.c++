@@ -5,15 +5,12 @@
  */
 
 
-#include <CppUTest/TestHarness.h>
+#include <gtest/gtest.h>
 
 #include "pointer_cast.hpp"
 
-TEST_GROUP(UTest4PointerCast)
-{
-};
 
 TEST(UTest4PointerCast, Check_static_pointer_cast)
 {
-    CHECK(true);
+    EXPECT_TRUE(true);
 }
