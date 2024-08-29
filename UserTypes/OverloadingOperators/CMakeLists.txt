@@ -14,3 +14,6 @@ list(FILTER sources EXCLUDE REGEX "${CMAKE_SOURCE_DIR}/build/")
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Catch2::Catch2)
+
+add_test(NAME UTest_OverloadingOperators
+    COMMAND $<TARGET_FILE:OverloadingOperators>)

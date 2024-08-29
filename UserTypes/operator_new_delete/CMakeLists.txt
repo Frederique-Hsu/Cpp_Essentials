@@ -10,3 +10,6 @@ file(GLOB_RECURSE headers *.h*)
 list(FILTER sources EXCLUDE REGEX "${CMAKE_SOURCE_DIR}/build/")
 
 add_executable(${PROJECT_NAME} ${sources} ${headers})
+
+add_test(NAME UTest_${PROJECT_NAME}
+    COMMAND $<TARGET_FILE:${PROJECT_NAME}>)

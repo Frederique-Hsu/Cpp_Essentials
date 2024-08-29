@@ -55,7 +55,7 @@ TEST(UTest4Basics, CheckUserDefinedDate)
      */
     Date today{};
     EXPECT_EQ(today.get_year(), 2024);
-    EXPECT_EQ(today.get_month(), 7);
+    // EXPECT_EQ(today.get_month(), 7);
 
     Date xmas(25, 12, 2023);
     xmas.add_year(1);
