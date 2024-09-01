@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_EXTENSIONS NO)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
-find_package(Boost REQUIRED COMPONENTS unit_test_framework)
+# find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
@@ -22,7 +22,7 @@ target_compile_options(${CURRENT_PROJECT_NAME} PRIVATE "-Wno-reorder")
 target_compile_options(${CURRENT_PROJECT_NAME} PRIVATE "-Wno-unused-private-field")
     
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Boost::unit_test_framework)
-target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE BOOST_TEST_DYN_LINK)
+target_compile_definitions(${CURRENT_PROJECT_NAME} PUBLIC BOOST_TEST_DYN_LINK)
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE "DEBUG_WITH_LOG")

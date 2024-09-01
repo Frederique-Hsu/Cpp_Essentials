@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS NO)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
-find_package(GTest REQUIRED CONFIG)
-
 file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
 
