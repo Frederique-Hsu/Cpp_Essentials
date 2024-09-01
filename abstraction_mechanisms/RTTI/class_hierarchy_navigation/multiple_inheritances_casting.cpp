@@ -7,6 +7,8 @@
 
 #include "multiple_inheritances_casting.hpp"
 
+#include <typeindex>
+
 void Component::communicate()
 {
 }
