@@ -30,3 +30,6 @@ endif()
 
 add_test(NAME UTest_${CURRENT_PROJECT_NAME}
     COMMAND $<TARGET_FILE:${CURRENT_PROJECT_NAME}>)
+
+include(GoogleTest)
+gtest_discover_tests(${CURRENT_PROJECT_NAME})
