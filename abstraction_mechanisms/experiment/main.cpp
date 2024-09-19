@@ -5,12 +5,13 @@
  */
 
 
-#include <gtest/gtest.h>
+#include <catch2/catch_session.hpp>
+
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
     std::cout << "Current C++ standard no. is " << __cplusplus << std::endl;
     
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    return Catch::Session().run(argc, argv);
 }
