@@ -34,5 +34,5 @@ void user(std::list<double>& ld, std::vector<std::complex<double>>& vc)
 {
     // double d = sum(vi, 0.0);
     double dd = sum(ld, 0.0);
-    auto z = sum(vc, std::complex<double>{});
+    [[maybe_unused]] auto z = sum(vc, std::complex<double>{});
 }

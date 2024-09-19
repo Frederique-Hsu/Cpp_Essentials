@@ -79,6 +79,12 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "shape": "cpp",
-        "*.h++": "cpp"
+        "*.h++": "cpp",
+        "bitset": "cpp",
+        "codecvt": "cpp",
+        "regex": "cpp",
+        "future": "cpp",
+        "ranges": "cpp",
+        "valarray": "cpp"
     }
 }
