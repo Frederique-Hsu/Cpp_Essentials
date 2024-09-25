@@ -12,10 +12,11 @@ file(GLOB_RECURSE headers *.h*)
 
 add_executable(${CURRENT_PROJECT_NAME} ${sources} ${headers})
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE GTest::gtest)
-target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
 target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC 
+    ${COMPILE_OPTIONS}
     "-Wno-pedantic"
-    "-Wno-sign-compare")
+    "-Wno-sign-compare"
+    "-Wno-c++20-extensions")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     # target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE "DEBUG_WITH_LOG")

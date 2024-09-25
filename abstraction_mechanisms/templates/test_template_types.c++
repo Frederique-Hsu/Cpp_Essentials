@@ -26,7 +26,7 @@ TEST(UTest4TemplateTypes, CheckTypeEquivalence)
         Circle(int radius) : Shape(), m_radius{radius} {}
         virtual ~Circle() = default;
     private:
-        int m_radius;
+        [[maybe_unused]] int m_radius;
     };
     
     Shape* ptr{new Circle(100)};    // OK: Circle* converts to Shape*
