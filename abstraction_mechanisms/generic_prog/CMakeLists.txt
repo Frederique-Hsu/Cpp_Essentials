@@ -20,4 +20,8 @@ target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2::Catch2)
 
 add_test(NAME UTest_${CURRENT_PROJECT_NAME}
-    COMMAND $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --success)
+    COMMAND valgrind --leak-check=full $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --success)
+    
+
+include(Catch)
+catch_discover_tests(${CURRENT_PROJECT_NAME})

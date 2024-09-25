@@ -47,7 +47,7 @@ namespace std
        
 TEST(UTest4String, CheckTheWordCountingWithStdString)
 {
-    GTEST_SKIP();
+    // GTEST_SKIP();
     
     auto countWordWithStdString = []() {
         std::map<std::string, int> word_map;
