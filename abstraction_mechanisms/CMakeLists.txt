@@ -71,7 +71,7 @@ endif()
 
 set(boost_unit_test_SOURCE_DIR ${BUILD_DIR}/_deps/boost-src)
 set(boost_unit_test_BINARY_DIR ${BUILD_DIR}/_deps/boost-build)
-if(NOT BUILD_UNIT_TEST_FRAMWORK_FROM_SOURCE)
+if(BUILD_UNIT_TEST_FRAMWORK_FROM_SOURCE)
     FetchContent_Declare(Boost
         GIT_REPOSITORY      https://github.com/boostorg/boost.git
         GIT_TAG             master)
