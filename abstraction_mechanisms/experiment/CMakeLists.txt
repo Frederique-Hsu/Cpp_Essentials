@@ -17,6 +17,9 @@ set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
     CXX_STANDARD                14
     CXX_STANDARD_REQUIRED       ON
     CXX_STANDARD_EXTENSIONS     OFF)
+target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
+    ${COMPILE_OPTIONS}
+    "-Wno-c++20-extensions")
 
 #===================================================================================================
 
@@ -26,6 +29,10 @@ set_target_properties(lambda_with_template PROPERTIES
     CXX_STANDARD_EXTENSIONS     OFF
     CXX_STANDARD_REQUIRED       ON)
 target_compile_definitions(lambda_with_template PRIVATE "ONLY_RESERVED_FOR_LABDA_WITH_TEMPLATE_PROJECT")
+target_compile_options(lambda_with_template PUBLIC 
+    "-Wall"
+    "-Werror"
+    "-Wno-c++20-extensions")
 
 
 add_executable(check_c_standard_no check_c_standard_no.c)
