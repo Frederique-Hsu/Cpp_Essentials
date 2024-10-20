@@ -35,7 +35,7 @@ TEST(UTest4Inhertance, CheckOverrideConstrollingInDeeperClassHierarchy)
         {
             std::cout << "Called D::f(int) const" << std::endl;
         }
-        void g(int)         /*! \attention  D::g(int) hide B0::g(double) */
+        void g(int)        /*! \attention  D::g(int) hide B0::g(double) */
         // void g(int) override    // error: B0::g(double) takes a double argument
         {
             std::cout << "Called D::g(int)" << std::endl;

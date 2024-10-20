@@ -278,7 +278,7 @@ void Matrix<T, N>::showLayout()
 template<typename T, int N>
 void Matrix<T, N>::assign(const std::vector<T>& vec)
 {
-    int index = 0;
+    auto index = 0U;
     auto size = vec.size();
     for (int row_index = 0; row_index < N; ++row_index)
     {
@@ -321,7 +321,7 @@ void Matrix<T, 1>::showLayout()
 template<typename T>
 void Matrix<T, 1>::assign(const std::vector<T>& vec)
 {
-    int index = 0;
+    auto index = 0U;
     auto size = vec.size();
     for (int col_index = 0; col_index < sz; col_index++)
     {

@@ -15,7 +15,7 @@ template<typename T> void sort(std::vector<T>& vec)
     
     for (int gap = n/2; 0 < gap; gap /= 2)
     {
-        for (int i = gap; i != n; ++i)
+        for (std::size_t i = gap; i != n; ++i)
         {
             for (int j = i - gap; 0 <= j; j -= gap)
             {
