@@ -104,7 +104,7 @@ TEST_CASE("Make the unit testing for instance specialization")
             std::vector<int> fibonacci(count);
             fibonacci[0] = 1;
             fibonacci[1] = 1;
-            for (int index = 2; index < fibonacci.size(); ++index)
+            for (auto index = 2U; index < fibonacci.size(); ++index)
             {
                 fibonacci[index] = fibonacci[index-1] + fibonacci[index-2];
             }

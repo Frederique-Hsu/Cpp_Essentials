@@ -14,9 +14,11 @@ target_sources(${CURRENT_PROJECT_NAME} PRIVATE
     ${sources}
     ${headers})
 
-target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
-target_compile_options(${CURRENT_PROJECT_NAME} PRIVATE "-Wno-unused-but-set-variable")
-target_compile_options(${CURRENT_PROJECT_NAME} PRIVATE "-Wno-unused-private-field")
+target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC 
+    ${COMPILE_OPTIONS}
+    "-Wno-unused-but-set-variable"
+    "-Wno-unused-private-field"
+    "-Wno-overloaded-virtual=0")
 target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC GTest::gtest)
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")

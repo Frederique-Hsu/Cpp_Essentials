@@ -17,6 +17,10 @@ target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
     "-Wno-pedantic"
     "-Wno-sign-compare"
     "-Wno-c++20-extensions")
+# set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
+#     CXX_STANDARD            20
+#     CXX_EXTENSIONS          OFF
+#     CXX_STANDARD_REQUIRED   ON)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     # target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE "DEBUG_WITH_LOG")

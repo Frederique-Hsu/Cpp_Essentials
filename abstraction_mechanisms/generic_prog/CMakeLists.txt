@@ -16,7 +16,9 @@ file(GLOB_RECURSE headers *.h*)
 add_executable(${CURRENT_PROJECT_NAME} "")
 target_sources(${CURRENT_PROJECT_NAME} PRIVATE ${sources} ${headers})
 
-target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
+target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC 
+    ${COMPILE_OPTIONS}
+    "-Wno-invalid-constexpr")
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2::Catch2)
 
 add_test(NAME UTest_${CURRENT_PROJECT_NAME}
