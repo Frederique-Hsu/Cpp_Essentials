@@ -10,7 +10,8 @@
 #include "Shape.hpp"
 #include "Circle.hpp"
 #include "IrregularPolygon.hpp"
-#include "../finalize.hpp"
+#include "../../utils/finalize.hpp"
+#include "../../utils/finalize.cpp"
 
 TEST(UTest4Abstraction, CheckInterfaceInhertitance)
 {

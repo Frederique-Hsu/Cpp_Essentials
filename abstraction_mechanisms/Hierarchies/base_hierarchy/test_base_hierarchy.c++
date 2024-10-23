@@ -6,7 +6,8 @@
 
 
 #include "base_hierarchy.hxx"
-#include "../../Inheritance/finalize.hpp"
+#include "../../utils/finalize.hpp"
+#include "../../utils/finalize.cpp"
 
 #include <boost/test/unit_test.hpp>
 #include <memory>

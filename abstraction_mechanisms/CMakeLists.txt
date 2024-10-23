@@ -7,7 +7,6 @@ list(APPEND COMPILE_OPTIONS
     "-Wall"
     "-Wpedantic"
     "-Werror"
-    "-Wno-overloaded-virtual"
     "-Wno-unused-variable")
 
 option(BUILD_UNIT_TEST_FRAMWORK_FROM_SOURCE "Git clone the unit test framework and build from source" ON)
@@ -19,6 +18,10 @@ set(BUILD_DIR ${ROOT_DIR}/build)
 set(GTest_SOURCE_DIR ${BUILD_DIR}/_deps/gtest-src)
 set(GTest_BINARY_DIR ${BUILD_DIR}/_deps/gtest-build)
 include(FetchContent)
+
+set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)     # 设置该变量，告诉CMake不要在断网情况下检查更新，而是使用先前已下载好的代码库。
+                                                # 若已存在代码库的情况下，不要去再次下载，这样可大幅节省Re/Configure CMake的时间。
+
 if(BUILD_UNIT_TEST_FRAMWORK_FROM_SOURCE)
     FetchContent_Declare(GTest
         GIT_REPOSITORY  https://github.com/google/googletest.git
@@ -99,3 +102,5 @@ add_subdirectory(Cast)
 add_subdirectory(classes)
 add_subdirectory(templates)
 add_subdirectory(experiment)
+add_subdirectory(concepts)
+add_subdirectory(templates_and_class_hierarchies)

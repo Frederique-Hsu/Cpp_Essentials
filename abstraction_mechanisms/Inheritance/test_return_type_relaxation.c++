@@ -8,7 +8,8 @@
 #include <gtest/gtest.h>
 
 #include "return_type_relaxation.hpp"
-#include "finalize.hpp"
+#include "../utils/finalize.hpp"
+#include "../utils/finalize.cpp"
 
 TEST(UTest4ReturnTypeRelaxation, CheckOverridedMethodCanReturnDerivedType)
 {

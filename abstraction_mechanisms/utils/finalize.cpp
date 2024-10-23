@@ -1,9 +1,11 @@
 /*!
- *  \file       finalize_impl.hpp
+ *  \file       finalize.cpp
  *  \brief      
  *  
  */
 
+
+#include "finalize.hpp"
 
 #ifdef DEBUG_WITH_LOG
     #include <iostream>
