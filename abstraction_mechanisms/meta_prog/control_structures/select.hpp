@@ -79,12 +79,6 @@ namespace my
     {
         using type = T4;
     };
-
-    template<int i, typename T1, typename T2, typename T3, typename T4>
-    Select<i, T1, T2, T3, T4> get(std::tuple<T1, T2, T3, T4>& t)
-    {
-        return t.operator=(i);
-    }
 }
 
 namespace estd
