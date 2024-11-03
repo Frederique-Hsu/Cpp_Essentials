@@ -27,7 +27,8 @@ void copy(T* dest, const T* src, int n)
         dest[index] = src[index]; 
     }
 #else   // if defined (CHOOSE_CLANG)
-    if (std::is_pod<T>::value)
+    // if (std::is_pod<T>::value)
+    if (std::is_standard_layout<T>::value && std::is_trivial<T>::value)
     {
         std::memcpy(dest, src, n * sizeof(T));
     }
@@ -46,7 +47,11 @@ namespace Estd
     template<typename T>
     constexpr bool Is_Pod()
     {
+    #if __cplusplus <= 201703L
         return std::is_pod<T>::value;
+    #elif __cplusplus >= 202002L
+        return std::is_standard_layout<T>::value && std::is_trivial<T>::value;
+    #endif
     }
 
     template<typename T>
