@@ -17,6 +17,11 @@ if (${BUILD_UT_FROM_SRC})
     FetchContent_MakeAvailable(GTest)
 endif()
 
+list(APPEND CXXFLAGS
+    "-Wall"
+    "-Wextra"
+    "-Werror")
+
 enable_testing()
 
 add_subdirectory(basics)
