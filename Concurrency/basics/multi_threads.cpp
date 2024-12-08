@@ -11,6 +11,7 @@
 #include <queue>
 #include <condition_variable>
 #include <numeric>
+#include <iostream>
 
 
 std::queue<Message> mesg_queue;     // 消息的队列
@@ -112,4 +113,16 @@ double quad_tasks_async_compute(std::vector<double>& vec)
     auto future_task4 = std::async(accum, begin_pointer + length * 3 / 4, begin_pointer +         length, 0.0);
 
     return future_task1.get() + future_task2.get() + future_task3.get() + future_task4.get();
+}
+
+void print_thread_id(std::thread& thrd)
+{
+    if (thrd.get_id() == std::thread::id{})
+    {
+        std::cout << "This thread is not joinable." << std::endl;
+    }
+    else
+    {
+        std::cout << "This thread's id is " << thrd.get_id() << std::endl;
+    }
 }

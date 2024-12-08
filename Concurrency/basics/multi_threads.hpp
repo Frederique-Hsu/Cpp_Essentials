@@ -48,3 +48,5 @@ double dual_tasks_parallel_compute(std::vector<double>& vec);
  *  \param      vec - vector<double>的容器
  */
 double quad_tasks_async_compute(std::vector<double>& vec);
+
+void print_thread_id(std::thread& thrd);
