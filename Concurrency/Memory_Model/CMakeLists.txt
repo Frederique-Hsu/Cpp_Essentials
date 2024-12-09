@@ -19,8 +19,10 @@ set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
     CXX_EXTENSIONS          NO
     CXX_STANDARD_REQUIRED   YES)
 target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
-    ${CXXFLAGS})
-target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC gtest)
+    ${CXXFLAGS}
+    "-Wno-unused-but-set-variable"
+    "-Wno-unused-variable")
+target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC gtest atomic)
 
 
 enable_testing()
