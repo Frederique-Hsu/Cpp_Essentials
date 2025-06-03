@@ -154,12 +154,12 @@ struct getNth
 {
     template<typename Tuple> static ReturnType& get(Tuple& tuple)
     {
-        return getNth<ReturnType, N-1>::template get(*tuple.base());
+        return getNth<ReturnType, N-1>::get(*tuple.base());
     }
 
     template<typename Tuple> static const ReturnType& get(const Tuple& tuple)
     {
-        return getNth<ReturnType, N-1>::template get(*tuple.base());
+        return getNth<ReturnType, N-1>::get(*tuple.base());
     }
 };
 

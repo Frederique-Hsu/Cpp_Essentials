@@ -28,7 +28,19 @@ template<typename T> constexpr bool Is_String()
 
 template<typename T> constexpr bool Is_C_Style_String()
 {
-    return std::__is_char<T>::value;
+    using U = std::remove_cv_t<T>;
+    constexpr bool is_pointer = std::is_pointer_v<U>;
+
+    using pointer_type = std::remove_pointer_t<U>;
+    constexpr bool is_char_pointer = std::is_same_v<std::remove_cv_t<pointer_type>, char>;
+
+    constexpr bool is_array = std::is_array_v<U>;
+    constexpr bool is_single_dimension = std::rank_v<U> == 1;
+
+    using element_type = std::remove_cv_t<std::remove_extent_t<U>>;
+    constexpr bool is_char_array = std::is_same_v<element_type, char>;
+
+    return (is_pointer && is_char_pointer) || (is_array && is_single_dimension && is_char_array);
 }
 
 template<typename T, typename... Args>              // 可变参数模板，类型参数列表： 一个或多个类型参数
