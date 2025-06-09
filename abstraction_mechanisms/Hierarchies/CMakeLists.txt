@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_EXTENSIONS NO)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
-# find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
