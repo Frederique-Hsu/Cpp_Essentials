@@ -333,7 +333,7 @@ template<typename T>
 void Matrix<T, 2>::assign(const std::vector<T>& vec)
 {
     int index = 0;
-    int size = vec.size();
+    auto size = vec.size();
     for (int row_index = 0; row_index < m_row; ++row_index)
     {
         for (int col_index = 0; col_index < m_col; ++col_index)
