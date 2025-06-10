@@ -15,7 +15,7 @@ list(FILTER sources EXCLUDE REGEX "${CURRENT_DIR}/check_cpp_standard_no.cpp")
 list(FILTER sources EXCLUDE REGEX "${CURRENT_DIR}/lambda_with_template.cpp")
 
 add_executable(${CURRENT_PROJECT_NAME} ${sources} ${headers})
-target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2::Catch2)
+target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2)
 set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
     CXX_STANDARD                14
     CXX_STANDARD_REQUIRED       ON
@@ -83,7 +83,7 @@ set_target_properties(Node PROPERTIES
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO)
 target_compile_definitions(Node PRIVATE "NODE")
-target_link_libraries(Node PRIVATE GTest::gtest)
+target_link_libraries(Node PRIVATE gtest)
 
 add_test(NAME UTest_Node
     COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose 
