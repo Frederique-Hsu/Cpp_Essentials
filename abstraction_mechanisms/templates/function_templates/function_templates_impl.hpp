@@ -9,7 +9,7 @@
 template<typename T>
 void sort(std::vector<T>& numbers)      // Shell sorting
 {
-    const std::size_t n = numbers.size();
+    const int n = static_cast<int>(numbers.size());
     
     for (int gap = n / 2; gap > 0; gap /= 2)
     {
@@ -36,7 +36,7 @@ template<typename T, typename Comparator>
 void shell_sort(std::vector<T>& numbers)
 {
     Comparator comp;
-    const std::size_t n = numbers.size();
+    const int n = static_cast<int>(numbers.size());
     
     for (int gap = n / 2; gap > 0; gap /= 2)
     {

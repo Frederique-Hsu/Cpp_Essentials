@@ -56,7 +56,7 @@ template<typename Allocator> void access(Allocator& allocator)
     int* p = allocator.template get<int>();     // OK: 编译器假定get()是一个模板
 
     EXPECT_EQ(*p, 42);
-    allocator.template release(p);
+    allocator.release(p);
 }
 
 void user(Pool& pool)

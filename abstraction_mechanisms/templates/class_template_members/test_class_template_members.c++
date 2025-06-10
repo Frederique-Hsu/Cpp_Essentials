@@ -46,7 +46,7 @@ TEST(UTest4TemplateMembers, CheckVectorPushBackAndPopBack)
         numbers.at(index) = index;
     }
     auto capacity = numbers.capacity();
-    for (index = numbers.size(); index < capacity + 2; ++index)
+    for (index = (unsigned int)numbers.size(); index < capacity + 2; ++index)
     {
         numbers.push_back(index);
     }

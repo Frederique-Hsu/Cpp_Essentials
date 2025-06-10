@@ -43,6 +43,7 @@ public:
     char* begin();
     char* end();
     const char* toString() const;
+    void append(const char* str);
 };
 
 std::ostream& operator<<(std::ostream& os, const MyVector<char*>& vec)
@@ -52,7 +53,10 @@ std::ostream& operator<<(std::ostream& os, const MyVector<char*>& vec)
 }
 std::istream& operator>>(std::istream& is,       MyVector<char*>& vec)
 {
-    is >> vec.m_elements;
+    // is >> vec.m_elements;
+    std::string str;
+    is >> str;
+    vec.append(str.c_str());
     return is;
 }
 bool operator==(const MyVector<char*>& vec, const char* str)
@@ -65,6 +69,32 @@ bool operator==(const MyVector<char*>& vec, const char* str)
 // template<>       // 特例化类模板的成员函数在类外部实现时，不需要加上template<>. 加上反而错了。
 MyVector<char*>::MyVector() : m_elements{nullptr}, m_size{0}
 {
+}
+
+void MyVector<char*>::append(const char *str)
+{
+    auto len = std::strlen(str);
+    if (m_elements == nullptr)
+    {
+        m_elements = (char*)std::malloc(sizeof(char) * (len + 1));
+        if (m_elements == nullptr)
+        {
+            throw  std::bad_alloc();
+        }
+        std::strncpy(m_elements, str, len);
+        m_size = len;
+    }
+    else
+    {
+        auto raw_len = std::strlen(str);
+        m_elements = (char*)std::realloc(m_elements, raw_len + len);
+        if (m_elements == nullptr)
+        {
+            throw std::bad_alloc();
+        }
+        std::strncpy(m_elements + raw_len, str, len);
+        m_size += len;
+    }
 }
 
 MyVector<char*>::MyVector(const char* str) : m_size{std::strlen(str) + 1}

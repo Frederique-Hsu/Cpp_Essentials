@@ -78,14 +78,15 @@ std::size_t String<CharType>::capacity() const
 template<typename CharType>
 String<CharType>::String(const CharType* str) : sz{0}, ptr{nullptr}, cap{0}
 {
-    #if true
-    std::size_t len = std::strlen(str);
-    #else
+#if true
+    int len = static_cast<int>(std::strlen(str));
+#else
+    int len = 0;
     if (typeid(str).name() == typeid(wchar_t).name())
     {
         len = std::wcslen(str);
     }
-    #endif
+#endif
     
     sz = (len <= short_max) ? short_max : len;
     cap = sz * 2;

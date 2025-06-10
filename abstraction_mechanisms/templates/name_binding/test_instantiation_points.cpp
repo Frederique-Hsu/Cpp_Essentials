@@ -320,7 +320,7 @@ namespace template_class_hierarchy
     void Matrix<T, N>::assign(const std::initializer_list<T>& init_list)
     {
         auto count = init_list.size();
-        int rows = count / MatrixBase<T>::sz;
+        auto rows = count / MatrixBase<T>::sz;
         int cols = MatrixBase<T>::sz;
 
         int index = 0;
