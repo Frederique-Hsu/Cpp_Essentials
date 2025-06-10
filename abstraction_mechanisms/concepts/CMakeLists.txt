@@ -17,7 +17,7 @@ target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
     ${COMPILE_OPTIONS}
     "-Wno-unused-but-set-variable"
     "-Wno-sign-compare")
-target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2::Catch2)
+target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2)
 
 
 enable_testing()
