@@ -22,7 +22,7 @@ target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
     ${CXXFLAGS}
     "-Wno-unused-but-set-variable"
     "-Wno-unused-variable")
-target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC gtest atomic)
+target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC gtest)
 
 
 enable_testing()
