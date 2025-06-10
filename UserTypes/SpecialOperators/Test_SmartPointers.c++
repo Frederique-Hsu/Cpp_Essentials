@@ -9,6 +9,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
+#include <iomanip>
 
 SCENARIO("Make the unit testing for SmartPointers", "[.][smart pointers]")
 {
