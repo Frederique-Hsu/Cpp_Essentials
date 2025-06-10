@@ -17,7 +17,8 @@
  */
 
 
-TEST_CASE("Make a small experiment to verify the C++ feature, that is: utilize the template in a Lambda expression.", "[Lambda][Template]")
+TEST_CASE("Make a small experiment to verify the C++ feature, "
+          "that is: utilize the template in a Lambda expression.", "[Lambda][Template]")
 {
     auto fn = []<typename T>(T t1, T t2) -> T
     {

@@ -19,10 +19,12 @@
 #endif
 
 
-BOOST_AUTO_TEST_CASE(CheckCppStandardNo)
-{
-    std::cout << "Current C++ standard no. is " << __cplusplus << std::endl;
-    std::cout << "Current program is " << sizeof(void*) * 8 << "-bits.\n" << std::endl;
+BOOST_AUTO_TEST_SUITE(UTest4CppStandard)
+    BOOST_AUTO_TEST_CASE(CheckCppStandardNo)
+    {
+        std::cout << "Current C++ standard no. is " << __cplusplus << std::endl;
+        std::cout << "Current program is " << sizeof(void*) * 8 << "-bits.\n" << std::endl;
 
-    BOOST_CHECK(true);
-}
+        BOOST_CHECK(true);
+    }
+BOOST_AUTO_TEST_SUITE_END()

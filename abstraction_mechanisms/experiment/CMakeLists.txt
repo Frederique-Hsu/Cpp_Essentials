@@ -17,7 +17,7 @@ list(FILTER sources EXCLUDE REGEX "${CURRENT_DIR}/lambda_with_template.cpp")
 add_executable(${CURRENT_PROJECT_NAME} ${sources} ${headers})
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2)
 set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
-    CXX_STANDARD                14
+    CXX_STANDARD                20
     CXX_STANDARD_REQUIRED       ON
     CXX_STANDARD_EXTENSIONS     OFF)
 target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
@@ -28,7 +28,7 @@ target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
 
 add_executable(lambda_with_template lambda_with_template.cpp)
 set_target_properties(lambda_with_template PROPERTIES
-    CXX_STANDARD                14
+    CXX_STANDARD                20
     CXX_STANDARD_EXTENSIONS     OFF
     CXX_STANDARD_REQUIRED       ON)
 target_compile_definitions(lambda_with_template PRIVATE "ONLY_RESERVED_FOR_LABDA_WITH_TEMPLATE_PROJECT")

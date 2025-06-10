@@ -1,11 +1,9 @@
-cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.20)
 
 set(CURRENT_PROJECT_NAME meta_prog)
 
 file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
-
-# find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 add_executable(${CURRENT_PROJECT_NAME}
     ${sources}
