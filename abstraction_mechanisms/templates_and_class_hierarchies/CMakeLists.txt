@@ -25,6 +25,7 @@ enable_testing()
 add_test(NAME UTest_${CURRENT_PROJECT_NAME}
     COMMAND valgrind --leak-check=full $<TARGET_FILE:${CURRENT_PROJECT_NAME}>)
 
+
 if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     include(GoogleTest)
     gtest_discover_tests(${CURRENT_PROJECT_NAME})

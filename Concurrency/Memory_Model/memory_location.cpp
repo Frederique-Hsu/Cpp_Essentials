@@ -18,6 +18,7 @@ TEST(UTester4MemoryLocation, CheckMemoryLocationForStruct)
 
     S obj;
     printf("S address = 0x%016llX\n", (unsigned long long)&obj);
+    printf("S address = %p\n", &obj);
     printf("     &S.a = 0x%016llX\n", (unsigned long long)&obj.a);
 //    printf("     &S.b = 0x%016X\n", (unsigned int)&obj.b);
 //    printf("     &S.c = 0x%016X\n", (unsigned int)&obj.c);
