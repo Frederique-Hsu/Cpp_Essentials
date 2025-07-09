@@ -11,6 +11,8 @@
 
 Textbook/
 build*/
-CMake_and_Makefile/cmake-*-tutorial-source/*
-CMake_and_Makefile/src/*
+CMake_and_Makefile/cmake-*-tutorial-source/
+CMake_and_Makefile/src/
 */.cache/
+
+CMake_and_Makefile/*/external/
