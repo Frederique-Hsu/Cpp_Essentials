@@ -8,3 +8,5 @@ enable_testing()
 add_subdirectory(abstraction_mechanisms)
 add_subdirectory(Concurrency)
 add_subdirectory(UserTypes)
+
+add_subdirectory(UserSmartPointer)
