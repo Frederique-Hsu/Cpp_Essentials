@@ -11,7 +11,12 @@ file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
 
 add_executable(${CURRENT_PROJECT_NAME} ${sources} ${headers})
-target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE CppUTest::CppUTest CppUTest::CppUTestExt)
+
+add_dependencies(${CURRENT_PROJECT_NAME} cpputest)
+
+target_include_directories(${CURRENT_PROJECT_NAME} PRIVATE ${CPPUTEST_INCLUDE_DIR})
+target_link_directories(${CURRENT_PROJECT_NAME} PRIVATE ${CPPUTEST_LIB_DIR})
+target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE CppUTest)
 
 #===============================================================================
 

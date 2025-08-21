@@ -6,16 +6,16 @@
 
 
 #define BOOST_TEST_MODULE "Unit testing for Interface_Polymorph project"
-// #define BOOST_TEST_DYN_LINK
-// #define BOOST_TEST_NO_MAIN
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_NO_MAIN
 #include <boost/test/unit_test.hpp>
 
-#if false
+#if defined (BOOST_TEST_DYN_LINK) && defined (BOOST_TEST_NO_MAIN)
     int main(int argc, char* argv[])
     {
         std::cout << "Current C++ standard no. is " << __cplusplus << std::endl;
         
-        return boost::unit_test::unit_test_main(&boost_init_unit_test, argc, argv);
+        return boost::unit_test::unit_test_main(&init_unit_test, argc, argv);
     }
 #endif
 

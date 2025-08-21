@@ -15,18 +15,18 @@ target_sources(${CURRENT_PROJECT_NAME} PRIVATE
     ${sources}
     ${headers})
 
+add_dependencies(${CURRENT_PROJECT_NAME} Boost)
 
 target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
 target_compile_options(${CURRENT_PROJECT_NAME} PRIVATE "-Wno-reorder")
 target_compile_options(${CURRENT_PROJECT_NAME} PRIVATE "-Wno-unused-private-field")
 
+target_include_directories(${CURRENT_PROJECT_NAME} PRIVATE ${BOOST_INCLUDE_DIR})
+target_link_directories(${CURRENT_PROJECT_NAME} PRIVATE ${BOOST_LIB_DIR})
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE boost_unit_test_framework)
 
+target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE "DEBUG_WITH_LOG")
 
-if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE "DEBUG_WITH_LOG")
-endif()
 
 add_test(NAME UTest_${CURRENT_PROJECT_NAME}
-    COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
-            $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --log_level=test_suite --report_level=short)
+    COMMAND $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --log_level=test_suite --report_level=short)

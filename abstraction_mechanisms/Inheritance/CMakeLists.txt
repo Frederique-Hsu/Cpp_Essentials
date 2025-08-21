@@ -15,19 +15,28 @@ add_executable(${CURRENT_PROJECT_NAME}
     ${sources}
     ${headers})
 
+add_dependencies(${CURRENT_PROJECT_NAME} googletest)
+
 message(STATUS "Current COMPILE_OPTIONS = ${COMPILE_OPTIONS}")
 target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
     ${COMPILE_OPTIONS}
     "-Wno-unused-but-set-variable"
     "-Wno-unused-private-field"
     "-Wno-overloaded-virtual")
+
+target_include_directories(${CURRENT_PROJECT_NAME} PUBLIC
+    ${GOOGLETEST_INCLUDE_DIR})
+
+target_link_directories(${CURRENT_PROJECT_NAME} PUBLIC
+    ${GOOGLETEST_LIB_DIR})
+
 target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC gtest)
 
 message(STATUS "Current CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 
-if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+# if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     target_compile_definitions(${CURRENT_PROJECT_NAME} PRIVATE "DEBUG_WITH_LOG")
-endif()
+# endif()
 
 
 #===============================================================================

@@ -8,6 +8,9 @@ file(GLOB_RECURSE headers *.h*)
 add_executable(${CURRENT_PROJECT_NAME}
     ${sources}
     ${headers})
+
+add_dependencies(${CURRENT_PROJECT_NAME} Boost)
+
 set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
     CXX_STANDARD            20
     CXX_EXTENSIONS          NO
@@ -17,6 +20,9 @@ target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC
     "-g"
     "-Wno-pedantic"
     "-Wno-return-type")
+
+target_include_directories(${CURRENT_PROJECT_NAME} PUBLIC ${BOOST_INCLUDE_DIR})
+target_link_directories(${CURRENT_PROJECT_NAME} PUBLIC ${BOOST_LIB_DIR})
 target_link_libraries(${CURRENT_PROJECT_NAME} PUBLIC boost_unit_test_framework)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
@@ -33,6 +39,12 @@ endif()
 
 
 enable_testing()
-add_test(NAME UTest_${CURRENT_PROJECT_NAME}
-    COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
-            $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --log_level=all --report_level=short)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    add_test(NAME UTest_${CURRENT_PROJECT_NAME}
+        COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
+                $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --log_level=all --report_level=short)
+else()
+    add_test(NAME UTest_${CURRENT_PROJECT_NAME}
+        COMMAND $<TARGET_FILE:${CURRENT_PROJECT_NAME}> --log_level=all --report_level=short)
+endif()

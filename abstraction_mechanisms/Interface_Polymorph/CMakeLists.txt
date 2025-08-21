@@ -10,8 +10,12 @@ file(GLOB_RECURSE sources *.c*)
 file(GLOB_RECURSE headers *.h*)
 
 add_executable(${CURRENT_PROJECT_NAME} ${sources} ${headers})
-target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
 
+add_dependencies(${CURRENT_PROJECT_NAME} Boost)
+
+target_compile_options(${CURRENT_PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
+target_include_directories(${CURRENT_PROJECT_NAME} PRIVATE ${BOOST_INCLUDE_DIR})
+target_link_directories(${CURRENT_PROJECT_NAME} PRIVATE ${BOOST_LIB_DIR})
 target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE boost_unit_test_framework)
 
 

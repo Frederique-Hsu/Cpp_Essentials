@@ -15,7 +15,13 @@ list(FILTER sources EXCLUDE REGEX "${CURRENT_DIR}/check_cpp_standard_no.cpp")
 list(FILTER sources EXCLUDE REGEX "${CURRENT_DIR}/lambda_with_template.cpp")
 
 add_executable(${CURRENT_PROJECT_NAME} ${sources} ${headers})
-target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2)
+
+add_dependencies(${CURRENT_PROJECT_NAME} catch2)
+
+target_include_directories(${CURRENT_PROJECT_NAME} PRIVATE ${CATCH2_INCLUDE_DIR})
+target_link_directories(${CURRENT_PROJECT_NAME} PRIVATE ${CATCH2_LIB_DIR})
+target_link_libraries(${CURRENT_PROJECT_NAME} PRIVATE Catch2d)
+
 set_target_properties(${CURRENT_PROJECT_NAME} PROPERTIES
     CXX_STANDARD                20
     CXX_STANDARD_REQUIRED       ON
@@ -71,6 +77,8 @@ add_test(NAME check_cpp_standard_no
     
 add_executable(Node "")
 
+add_dependencies(Node googletest)
+
 file(GLOB_RECURSE sources_node ${CURRENT_DIR}/Node/*.c*)
 file(GLOB_RECURSE headers_node ${CURRENT_DIR}/Node/*.h*)
 
@@ -79,12 +87,20 @@ target_sources(Node PRIVATE
     ${headers_node})
 
 set_target_properties(Node PROPERTIES
-    CXX_STANDARD 11
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO)
 target_compile_definitions(Node PRIVATE "NODE")
+
+target_include_directories(Node PRIVATE ${GOOGLETEST_INCLUDE_DIR})
+target_link_directories(Node PRIVATE ${GOOGLETEST_LIB_DIR})
 target_link_libraries(Node PRIVATE gtest)
 
-add_test(NAME UTest_Node
-    COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose 
-            $<TARGET_FILE:Node>)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    add_test(NAME UTest_Node
+        COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose 
+                $<TARGET_FILE:Node>)
+else()
+    add_test(NAME UTest_Node
+        COMMAND $<TARGET_FILE:Node>)
+endif()
