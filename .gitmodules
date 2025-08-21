@@ -1,6 +1,3 @@
-[submodule "cpplects-beamer"]
-	path = Programming_Books/cpplects-beamer
-	url = git@github.com:registor/cpplects-beamer.git
 [submodule "CMake_and_Makefile/cmake-cookbook"]
 	path = CMake_and_Makefile/cmake-cookbook
 	url = https://github.com/dev-cafe/cmake-cookbook.git
