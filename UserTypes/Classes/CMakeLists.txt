@@ -11,6 +11,10 @@ list(FILTER sources EXCLUDE REGEX "${CMAKE_SOURCE_DIR}/build/")
 
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
+add_dependencies(${PROJECT_NAME} googletest)
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${GOOGLETEST_INCLUDE_DIR})
+target_link_directories(${PROJECT_NAME} PRIVATE ${GOOGLETEST_LIB_DIR})
 target_link_libraries(${PROJECT_NAME} PRIVATE gtest)
 
 add_test(NAME UTest_${PROJECT_NAME}

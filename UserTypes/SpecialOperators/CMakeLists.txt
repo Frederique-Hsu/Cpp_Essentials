@@ -11,7 +11,11 @@ list(FILTER sources EXCLUDE REGEX "${CMAKE_SOURCE_DIR}/build/")
 
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Catch2)
+add_dependencies(${PROJECT_NAME} catch2)
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${CATCH2_INCLUDE_DIR})
+target_link_directories(${PROJECT_NAME} PRIVATE ${CATCH2_LIB_DIR})
+target_link_libraries(${PROJECT_NAME} PRIVATE Catch2d)
 
 add_test(NAME UTest_SpecialOperators
     COMMAND $<TARGET_FILE:SpecialOperators>)
