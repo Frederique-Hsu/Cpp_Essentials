@@ -14,4 +14,6 @@ add_subdirectory(abstraction_mechanisms)
 add_subdirectory(Concurrency)
 add_subdirectory(UserTypes)
 
-add_subdirectory(UserSmartPointer)
+# add_subdirectory(UserSmartPointer)
+
+add_subdirectory(Template_Meta_Programming)
