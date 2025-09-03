@@ -3,10 +3,11 @@
 *.o
 *.obj
 *.exe
+*.out
 *.user
 *.pdf
 *.json
-*.txt
+*.pcm
 *.DS_Store
 
 Textbook/
