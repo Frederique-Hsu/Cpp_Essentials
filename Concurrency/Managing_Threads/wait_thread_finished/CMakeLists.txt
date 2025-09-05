@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION  3.20)
 
-project(hello_concurrency_world)
+project(wait_thread_finished)
 
 
 file(GLOB_RECURSE sources "*.c*")
 file(GLOB_RECURSE headers "*.h*")
+list(FILTER sources EXCLUDE REGEX "./build/*")
+list(FILTER headers EXCLUDE REGEX "./build/*")
+
 message(STATUS "${PROJECT_NAME} project's code files list: ")
 foreach(source ${sources})
     message(STATUS "\t\t ${source}")
@@ -24,10 +27,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     CXX_EXTENSIONS      NO
     CXX_STANDARD_REQUIRED   YES)
 
-target_compile_options(${PROJECT_NAME} PRIVATE
+target_compile_options(${PROJECT_NAME} PUBLIC
     "-Wall"
     "-Wextra"
-    "-Wall")
+    "-Werror")
 
 
 enable_testing()
