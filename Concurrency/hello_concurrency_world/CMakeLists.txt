@@ -12,6 +12,7 @@ endforeach()
 foreach(header ${headers})
     message(STATUS "\t\t ${header}")
 endforeach()
+message(STATUS "\n")
 
 
 add_executable(${PROJECT_NAME}
@@ -27,3 +28,9 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     "-Wall"
     "-Wextra"
     "-Wall")
+
+
+enable_testing()
+
+add_test(NAME   UTest_${PROJECT_NAME}
+    COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
