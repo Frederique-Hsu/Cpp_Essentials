@@ -1,3 +1,9 @@
 [submodule "CMake_and_Makefile/cmake-cookbook"]
 	path = CMake_and_Makefile/cmake-cookbook
 	url = https://github.com/dev-cafe/cmake-cookbook.git
+[submodule "Concurrency/CPP_Concurrency_In_Action_2nd_edition_chinese_translation"]
+	path = Concurrency/CPP_Concurrency_In_Action_2nd_edition_chinese_translation
+	url = https://github.com/xiaoweiChen/CPP-Concurrency-In-Action-2ed-2019.git
+[submodule "Concurrency/CPP_Concurrency_In_Action_2ed"]
+	path = Concurrency/CPP_Concurrency_In_Action_2ed
+	url = https://github.com/downdemo/Cpp-Concurrency-in-Action-2ed.git
