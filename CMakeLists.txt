@@ -17,3 +17,4 @@ add_subdirectory(UserTypes)
 # add_subdirectory(UserSmartPointer)
 
 add_subdirectory(Template_Meta_Programming)
+add_subdirectory(CompileTime_NumericalComputation)

@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION  3.20)
+
+project(Compile_Time_Numerical_Computation)
+
+add_subdirectory(Non_TMP)
+add_subdirectory(cpp98_template_meta_programming)
+add_subdirectory(cpp11_template_meta_programming)
+add_subdirectory(cpp14_meta_programming)
+add_subdirectory(cpp17_meta_programming)
+add_subdirectory(cpp20_meta_programming)

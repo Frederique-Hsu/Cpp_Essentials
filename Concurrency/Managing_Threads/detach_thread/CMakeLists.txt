@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION  3.20)
 
+project(detach_thread)
 
-project(join_thread)
 
 
 file(GLOB_RECURSE sources "*.c*")
@@ -16,10 +16,7 @@ endforeach()
 foreach(header ${headers})
     message(STATUS "\t\t ${header}")
 endforeach()
-<<<<<<< HEAD
-=======
 message(STATUS "\n")
->>>>>>> 4f095c24cfbca65fa0907488e546d72abfec121d
 
 
 add_executable(${PROJECT_NAME}
@@ -35,12 +32,8 @@ target_compile_options(${PROJECT_NAME} PUBLIC
     "-Wall"
     "-Wextra"
     "-Werror")
-<<<<<<< HEAD
-=======
-
 
 enable_testing()
 
 add_test(NAME   UTest_${PROJECT_NAME}
     COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
->>>>>>> 4f095c24cfbca65fa0907488e546d72abfec121d

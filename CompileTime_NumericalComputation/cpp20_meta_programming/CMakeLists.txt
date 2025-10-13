@@ -1,14 +1,9 @@
 cmake_minimum_required(VERSION  3.20)
 
-
-project(join_thread)
-
+project(cpp20_meta_programming)
 
 file(GLOB_RECURSE sources "*.c*")
 file(GLOB_RECURSE headers "*.h*")
-list(FILTER sources EXCLUDE REGEX "./build/*")
-list(FILTER headers EXCLUDE REGEX "./build/*")
-
 message(STATUS "${PROJECT_NAME} project's code files list: ")
 foreach(source ${sources})
     message(STATUS "\t\t ${source}")
@@ -16,10 +11,7 @@ endforeach()
 foreach(header ${headers})
     message(STATUS "\t\t ${header}")
 endforeach()
-<<<<<<< HEAD
-=======
 message(STATUS "\n")
->>>>>>> 4f095c24cfbca65fa0907488e546d72abfec121d
 
 
 add_executable(${PROJECT_NAME}
@@ -27,20 +19,11 @@ add_executable(${PROJECT_NAME}
     ${headers})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD        11
+    CXX_STANDARD        20
     CXX_EXTENSIONS      NO
     CXX_STANDARD_REQUIRED   YES)
 
-target_compile_options(${PROJECT_NAME} PUBLIC
+target_compile_options(${PROJECT_NAME} PRIVATE
     "-Wall"
     "-Wextra"
     "-Werror")
-<<<<<<< HEAD
-=======
-
-
-enable_testing()
-
-add_test(NAME   UTest_${PROJECT_NAME}
-    COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
->>>>>>> 4f095c24cfbca65fa0907488e546d72abfec121d
